@@ -1,0 +1,27 @@
+{
+  "name": "gift-scribe",
+  "version": "1.0.0",
+  "description": "GiftScribe - An app to track gift ideas for fiends and family.",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql2": "^1.6.5",
+    "sequelize": "^5.8.10"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HHalon/gift-scribe.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HHalon/gift-scribe/issues"
+  },
+  "homepage": "https://github.com/HHalon/gift-scribe#readme"
+}
