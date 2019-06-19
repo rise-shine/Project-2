@@ -1,8 +1,18 @@
 import React from "react";
-import Form from "./components/Form";
+import Wrapper from "./components/Wrapper";
 
-function App() {
-  return <Form />;
+class App extends React.Component {
+ render() {
+
+  return (
+
+    <Wrapper>
+      <h1>I have a Wrapper!</h1>
+    </Wrapper>
+  );
+  
+ }
+  
 }
 
 export default App;
