@@ -1,11 +1,12 @@
 import React from "react";
 import Wrapper from "./components/Wrapper";
-import Button from 'react-bootstrap/Button';
-import Navbar from'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav'
-import NavDropdown from 'react-bootstrap/NavDropdown'
-import Form from 'react-bootstrap/Form'
-import FormControl from 'react-bootstrap/FormControl'
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import Button from './react-bootstrap/Button';
+import Nav from './react-bootstrap/Nav';
+import NavDropdown from './react-bootstrap/NavDropdown';
+import Form from './react-bootstrap/Form';
+import FormControl from './react-bootstrap/FormControl';
 
 class App extends React.Component {
  render() {
@@ -34,9 +35,10 @@ class App extends React.Component {
     </Form>
   </Navbar.Collapse>
 </Navbar>
+    <Footer />
     </Wrapper>
   )
  }
- }
+ };
   
 export default App;
