@@ -1,6 +1,7 @@
 import React from "react";
+import "./login.css";
 
-class LoginForm extends React.Component {
+export default class LoginForm extends React.Component {
   state = {
     email: "",
     password: ""
@@ -26,31 +27,48 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <div>
-        <form className="form-group">
-          <input
-            className="form-control"
-            value={this.state.firstName}
-            forminput="email"
-            onChange={this.handleInputChange}
-            type="email"
-            placeholder="Email Address"
+      <div className="container">
+        <div className="row" id="picture">
+          <img
+            src="./component/images/giftbox.jpg"
+            className="img-fluid"
+            alt="gift boxes"
           />
-          <input
-            className="form-control"
-            value={this.state.lastName}
-            forminput="password"
-            onChange={this.handleInputChange}
-            type="text"
-            placeholder="Password"
-          />
+        </div>
+        <div className="row" id="spacer" />
+        <div className="row" id="form">
+          <div className="col-sm" />
+          <div className="col-sm-6">
+            <form className="form-group">
+              <input
+                className="form-control"
+                value={this.state.firstName}
+                forminput="email"
+                onChange={this.handleInputChange}
+                type="email"
+                placeholder="Email Address"
+              />
+              <input
+                className="form-control"
+                value={this.state.lastName}
+                forminput="password"
+                onChange={this.handleInputChange}
+                type="text"
+                placeholder="Password"
+              />
 
-          <button className="btn btn-primary" onClick={this.handleFormSubmit}>
-            Submit
-          </button>
-        </form>
+              <button
+                className="btn btn-primary"
+                onClick={this.handleFormSubmit}
+              >
+                Submit
+              </button>
+            </form>
+          </div>
+          <div className="col-sm" />
+        </div>
+        <div className="row" id="spacer2" />
       </div>
     );
   }
 }
-export default LoginForm;
