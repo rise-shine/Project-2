@@ -1,12 +1,26 @@
 import React from "react";
+import SignUpform from "./signup.js";
 import "./login.css";
 
 export default class LoginForm extends React.Component {
   state = {
     email: "",
-    password: ""
+    password: "",
+    showModal: false
   };
-
+  handleClick = event => {
+    event.preventDefault();
+    this.setState({
+      showModal: !this.state.showModal
+    });
+  };
+  signUp = () => {
+    if (this.state.showModal) {
+      return <SignUpform />;
+    } else {
+      return null;
+    }
+  };
   handleInputChange = event => {
     const { forminput, value } = event.target;
     this.setState({
@@ -63,6 +77,12 @@ export default class LoginForm extends React.Component {
               >
                 Submit
               </button>
+              <button
+                className="btn btn-secondary"
+                onClick={this.handleClick}
+                label="New User"
+              />
+              {this.signUp}
             </form>
           </div>
           <div className="col-sm" />
