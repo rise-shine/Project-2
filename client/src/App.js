@@ -4,16 +4,14 @@ import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 
 class App extends React.Component {
- render() {
+  render() {
+    return (
+      <Wrapper>
+        <Navbar />
+        <Footer />
+      </Wrapper>
+    );
+  }
+}
 
-  return (
-
-    <Wrapper>  
-    <Navbar />
-    <Footer />
-    </Wrapper>
-  )
- }
- };
-  
 export default App;
