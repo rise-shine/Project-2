@@ -1,0 +1,19 @@
+.container {
+  background-color: #9b6483;
+}
+#picture {
+  height: 200px;
+}
+#form {
+  height: 300px;
+}
+.col-sm-6 {
+  border: 3px;
+  border-color: #c47787;
+}
+#spacer {
+  height: 50px;
+}
+#spacer2 {
+  height: 50px;
+}
