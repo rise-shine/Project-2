@@ -1,10 +1,11 @@
 import React from "react";
+import '../Navbar/Navbar.css'
 
 function Navbar() {
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-  <a className="navbar-brand" href="/">Gift Scribe~~</a>
+        <nav className="navbar navbar-expand-lg navbar-danger bg-danger">
+  <a className="navbar-brand" href="/">Gift Scribe</a>
   <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span className="navbar-toggler-icon"></span>
   </button>
@@ -22,14 +23,11 @@ function Navbar() {
           Dropdown
         </a>
         <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a className="dropdown-item" href="/action1">Action1</a>
+          <a className="dropdown-item" href="/action1">Gift List</a>
           <a className="dropdown-item" href="/action2">Another action</a>
           <div className="dropdown-divider"></div>
           <a className="dropdown-item" href="/action3">Something else here</a>
         </div>
-      </li>
-      <li className="nav-item">
-        <a className="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
       </li>
     </ul>
   </div>

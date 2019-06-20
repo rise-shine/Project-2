@@ -5,13 +5,12 @@
 // Dependencies
 // =============================================================
 var path = require("path");
-
+var app = require('express').Router();
 // Routes
 // =============================================================
-module.exports = function(app) {
-
   // Index route loads index.html
   app.get("/", function(req, res) {
+    console.log(path.join(__dirname, "../public/index.html"))
     res.sendFile(path.join(__dirname, "../public/index.html"));
   });
 
@@ -24,7 +23,8 @@ module.exports = function(app) {
   app.get("/blog", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/holiday.html"));
   });
+module.exports = app
 
-};
+
 
 
