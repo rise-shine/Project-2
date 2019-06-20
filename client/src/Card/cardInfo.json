@@ -1,0 +1,23 @@
+[
+    {
+      "id": 1,
+      "friend": "Mom",
+      "gift": "kitchen knife set",
+      "price": 59.0,
+      "completed": false
+    },
+    {
+      "id": 2,
+      "friend": "Dad",
+      "gift": "golf clubs",
+      "price": 299.00,
+      "completed": false
+    },
+    {
+      "id": 3,
+      "friend": "Ryan",
+      "gift": "xbox",
+      "price": 299,
+      "completed": true
+    }
+  ]

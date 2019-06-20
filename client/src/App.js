@@ -3,20 +3,33 @@ import Wrapper from "./components/Wrapper";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import LoginForm from "./components/login.js";
+import Card from "./Card/Card";
+import cardInfo from "./Card/cardInfo.json";
 
 class App extends React.Component {
+  state = {
+    cardInfo
+  };
 
- render() {
-  return (
-
-    <Wrapper>  
-    <Navbar />
-   
-    <Footer />
-    </Wrapper>
-  )
- }
- };
-  
+  render() {
+    return (
+      <Wrapper>
+        <Navbar />
+        <LoginForm />
+        {this.state.cardInfo.map(card => (
+          <Card
+            id={card.id}
+            name={card.friend}
+            gift={card.gift}
+            price={card.price}
+            purchased={card.purchased}
+          />
+        ))}
+        
+        <Footer />
+      </Wrapper>
+    );
+  }
+}
 
 export default App;
