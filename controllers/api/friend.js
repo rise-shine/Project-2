@@ -1,5 +1,5 @@
 const router = require("express").Router();
-var db = require("../../../models");
+var db = require("../../models");
 
 router.get("/", function(req, res) {
   console.log("Hi");
@@ -18,17 +18,23 @@ router.get("/user", function(req, res) {
 });
 
 // post route to create burgers
-router.post("/friends/create", function(req, res) {
+router.get("/user/create", function(req, res) {
+  const { name, email, password } = req.query;
+  
   // edited burger create to add in a burger_name
-  db.Friend.create({
-    name: req.body.name
+  db.User.create({
+    name: name,
+    email: email,
+    password: password
   })
     // pass the result of our call
-    .then(function(dbFriend) {
+    .then(function(response) {
       // log the result to our terminal/bash window
-      console.log(dbFriend);
+      console.log(response);
       // redirect
       res.redirect("/");
+    }).catch(err => {
+      console.log(err);
     });
 });
 
