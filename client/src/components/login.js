@@ -44,7 +44,7 @@ export default class LoginForm extends React.Component {
       <div className="container">
         <div className="row" id="picture">
           <img
-            src="./component/images/giftbox.jpg"
+            src={require("../images/giftbox.jpg")}
             className="img-fluid"
             alt="gift boxes"
           />
