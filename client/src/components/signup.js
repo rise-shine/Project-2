@@ -1,6 +1,6 @@
 import React from "react";
 
-export default class signUpform extends React.Component {
+export default class SignUpform extends React.Component {
   state = {
     email: "",
     password: ""

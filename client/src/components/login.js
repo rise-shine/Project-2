@@ -1,5 +1,5 @@
 import React from "react";
-import SignUpform from "./signup.js";
+import SignUpform from "./signup";
 import "./login.css";
 
 export default class LoginForm extends React.Component {

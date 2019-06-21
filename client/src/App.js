@@ -3,7 +3,7 @@ import Wrapper from "./components/Wrapper";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import LoginForm from "./components/login.js";
-import SignUpform from "./components/signup.js";
+
 class App extends React.Component {
   render() {
     return (
