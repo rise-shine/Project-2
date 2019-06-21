@@ -16,7 +16,7 @@ function Card(props) {
             <strong>Gift:</strong> {props.gift}
           </li>
           <li>
-            <strong>Price;</strong> {props.price}
+            <strong>Price:</strong> {props.price}
           </li>
           <li>
             <strong>Purchased:</strong> {props.purchased}
