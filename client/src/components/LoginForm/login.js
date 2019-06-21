@@ -1,6 +1,7 @@
 import React from "react";
 import "./login.css";
 
+
 export default class LoginForm extends React.Component {
   state = {
     email: "",
@@ -30,7 +31,7 @@ export default class LoginForm extends React.Component {
       <div className="container">
         <div className="row" id="picture">
           <img
-            src= "../images/giftbox.jpg"
+            src= ""
             className="img-fluid"
             alt="gift boxes"
           />
