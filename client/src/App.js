@@ -22,7 +22,7 @@ class App extends React.Component {
             name={card.friend}
             gift={card.gift}
             price={card.price}
-            purchased={card.purchased}
+            purchased={card.completed}
           />
         ))}
 
