@@ -1,16 +1,6 @@
 const router = require("express").Router();
-const friendRoutes = require("./friend");
-var db = require("../../models");
+const userRoutes = require("./user");
 
-router.use("/friend", friendRoutes);
-router.get("/user", function(req, res) {
-  
-    db.User.findAll()
-      
-      .then(function(dbFriend) {
-        
-        
-        return res.json(dbFriend);
-      });
-  });
+router.use("/user", userRoutes);
+
 module.exports = router;

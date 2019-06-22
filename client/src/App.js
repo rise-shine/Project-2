@@ -18,6 +18,7 @@ class App extends React.Component {
         <LoginForm />
         {this.state.cardInfo.map(card => (
           <Card
+            key={card.id}
             id={card.id}
             name={card.friend}
             gift={card.gift}
