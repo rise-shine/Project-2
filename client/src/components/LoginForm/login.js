@@ -1,24 +1,24 @@
 import React from "react";
-
-//import Modal from "react-bootstrap/Modal";
-//import Button from "react-bootstrap/Button";
-
 import "./login.css";
+import axios from "axios";
 
 export default class LoginForm extends React.Component {
-  state = {
-    name: "",
-    email: "",
-    password: ""
-  };
+
   constructor(props, context) {
     super(props, context);
 
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.handleSignUp = this.handleSignUp.bind(this);
 
     this.state = {
-      show: false
+      show: false,
+      name: "",
+      email: "",
+      password: "",
+      userID: 0
     };
   }
 
@@ -31,11 +31,33 @@ export default class LoginForm extends React.Component {
   }
 
   handleInputChange = event => {
-    const { forminput, value } = event.target;
+    const { name, value } = event.target;
     this.setState({
-      [forminput]: value
+      [name]: value
     });
   };
+
+  handleSignUp = event => {
+
+    event.preventDefault();
+
+    const { name, email, password } = this.state;
+    
+    axios.post("/api/user/create", { name, email, password })
+      .then(response => {
+
+        console.log(response);
+        this.setState({
+          userID: response.data.userID,
+          show: false
+        })
+
+        console.log(this.state)
+
+      });
+
+     
+  }
 
   handleFormSubmit = event => {
     //need to add logic to check this data with database
@@ -45,17 +67,18 @@ export default class LoginForm extends React.Component {
     this.setState({
       name: "",
       email: "",
-      password: ""
+      password: "",
     });
   };
 
   render() {
     return (
       <div className="container">
+
         <div
           className="modal fade"
           id="exampleModal"
-          tabindex="-1"
+          tabIndex="-1"
           role="dialog"
           aria-labelledby="exampleModalLabel"
           aria-hidden="true"
@@ -81,7 +104,7 @@ export default class LoginForm extends React.Component {
                   <input
                     className="form-control"
                     value={this.state.name}
-                    forminput="name"
+                    name="name"
                     onChange={this.handleInputChange}
                     type="text"
                     placeholder="Full Name"
@@ -89,7 +112,7 @@ export default class LoginForm extends React.Component {
                   <input
                     className="form-control"
                     value={this.state.email}
-                    forminput="email"
+                    name="email"
                     onChange={this.handleInputChange}
                     type="email"
                     placeholder="Email Address"
@@ -97,9 +120,9 @@ export default class LoginForm extends React.Component {
                   <input
                     className="form-control"
                     value={this.state.password}
-                    forminput="password"
+                    name="password"
                     onChange={this.handleInputChange}
-                    type="text"
+                    type="password"
                     placeholder="Password"
                   />
                 </form>
@@ -115,10 +138,12 @@ export default class LoginForm extends React.Component {
                 <button
                   type="button"
                   className="btn btn-primary"
-                  onClick={this.handleFormSubmit}
+                  onClick={this.handleSignUp}
+                  data-dismiss="modal"
                 >
                   Save New Account
                 </button>
+
               </div>
             </div>
           </div>
@@ -135,11 +160,16 @@ export default class LoginForm extends React.Component {
         <div className="row" id="form">
           <div className="col-sm" />
           <div className="col-sm-6">
+
+          {
+            this.state.userID > 0 ? <p>Welcome user number {this.state.userID}</p> : null
+          }
+          
             <form className="form-group">
               <input
                 className="form-control"
                 value={this.state.email}
-                forminput="email"
+                name="email"
                 onChange={this.handleInputChange}
                 type="email"
                 placeholder="Email Address"
@@ -147,9 +177,9 @@ export default class LoginForm extends React.Component {
               <input
                 className="form-control"
                 value={this.state.password}
-                forminput="password"
+                name="password"
                 onChange={this.handleInputChange}
-                type="text"
+                type="password"
                 placeholder="Password"
               />
 

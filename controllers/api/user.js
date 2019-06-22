@@ -6,7 +6,7 @@ router.get("/", function(req, res) {
 });
 
 // get route, edited to match sequelize
-router.get("/user", function(req, res) {
+router.get("/welcome", function(req, res) {
   
   db.User.findAll()
     
@@ -18,8 +18,10 @@ router.get("/user", function(req, res) {
 });
 
 // post route to create burgers
-router.get("/user/create", function(req, res) {
-  const { name, email, password } = req.query;
+router.post("/create", function(req, res) {
+  const { name, email, password } = req.body;
+
+  console.log(name, email, password);
   
   // edited burger create to add in a burger_name
   db.User.create({
@@ -29,10 +31,10 @@ router.get("/user/create", function(req, res) {
   })
     // pass the result of our call
     .then(function(response) {
-      // log the result to our terminal/bash window
-      console.log(response);
-      // redirect
-      res.redirect("/");
+
+      console.log(response.dataValues.id);
+      res.json({userID: response.dataValues.id});
+      // res.redirect("/");
     }).catch(err => {
       console.log(err);
     });
