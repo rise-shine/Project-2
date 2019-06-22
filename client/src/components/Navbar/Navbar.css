@@ -1,19 +1,84 @@
+@import url('https://fonts.googleapis.com/css?family=Mali&display=swap');
 
-
-.navbar-brand{
-    color:white;
-    position:relative;
-
+#navbarSupportedContent{
+    background-color: rgb(255, 238, 0);
+    font-size: 15px;
+    margin: 0px;
+    font-family: 'Mali', cursive;
+    font-weight: bold;
+    color: orangered;
+    border-radius: 15px;
 }
-.nav-link{color:white;
 
-position:relative;}
+.nav-link{
+    color: orangered;
+    width: 70px;
+}
 
 .dropdown-menu{
-    color:white;
-
+    color:green;
 }
-.navbar-toggler-icon{
-    color:white;
 
+#logo{
+    font-family: 'Mali', cursive;
+    font-weight: bold;
+    color: orangered;
+    font-size: 25px;
 }
+
+#dropdownId{
+    background-color: rgb(255, 238, 0);
+}
+#navbarDropdown:hover {
+    transform: scale(1.08); 
+    color:red;
+}
+
+#login:hover {
+    transform: scale(1.08); 
+    color:red;
+}
+
+
+.dropdown-item{
+    color: orange;
+}
+
+.dropdown-item:hover{
+    color: orangered;
+    background-color: yellow;
+    font-weight: bold;
+}
+
+#menuButton{
+    background-color: pink;
+    width: 80px;
+    color: red;
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+}
+
+#navbarId{
+    background-color: rgb(255, 166, 0);
+}
+
+#pencil{
+    height: 40px;
+    width: 40px;
+}
+
+#pencil:hover{
+    transform: scale(1.08);
+}
+
+.nav{
+    width: 100%;
+}
+
+#navbarId{
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 40px;
+}
+

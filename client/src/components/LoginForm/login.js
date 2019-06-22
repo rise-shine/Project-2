@@ -5,7 +5,7 @@ function LoginForm(props) {
 
     console.log(props);
     return (
-      <div className="container">
+      <div className="container" id="containerId">
 
         <div
           className="modal fade"
@@ -83,9 +83,9 @@ function LoginForm(props) {
 
         <div className="row" id="picture">
           <img
-            src={require("../../images/giftbox.jpg")}
+            src={require("../../images/legalpad.png")}
             className="img-fluid"
-            alt="gift boxes"
+            alt="legal pad"
           />
         </div>
         <div className="row" id="spacer" />
@@ -118,6 +118,7 @@ function LoginForm(props) {
               <button
                 type="button"
                 className="btn btn-primary"
+                id="submitButton"
                 onClick={(e) => props.handleFormSubmit(e)}
               >
                 Submit
@@ -125,6 +126,7 @@ function LoginForm(props) {
               <button
                 type="button"
                 className="btn btn-success"
+                id="createNewAccountButton"
                 data-toggle="modal"
                 data-target="#exampleModal"
               >
