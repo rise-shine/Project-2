@@ -1,77 +1,9 @@
 import React from "react";
 import "./login.css";
-import axios from "axios";
 
-export default class LoginForm extends React.Component {
+function LoginForm(props) {
 
-  constructor(props, context) {
-    super(props, context);
-
-    this.handleShow = this.handleShow.bind(this);
-    this.handleClose = this.handleClose.bind(this);
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleFormSubmit = this.handleFormSubmit.bind(this);
-    this.handleSignUp = this.handleSignUp.bind(this);
-
-    this.state = {
-      show: false,
-      name: "",
-      email: "",
-      password: "",
-      userID: 0
-    };
-  }
-
-  handleClose() {
-    this.setState({ show: false });
-  }
-
-  handleShow() {
-    this.setState({ show: true });
-  }
-
-  handleInputChange = event => {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
-  };
-
-  handleSignUp = event => {
-
-    event.preventDefault();
-
-    const { name, email, password } = this.state;
-    
-    axios.post("/api/user/create", { name, email, password })
-      .then(response => {
-
-        console.log(response);
-        this.setState({
-          userID: response.data.userID,
-          show: false
-        })
-
-        console.log(this.state)
-
-      });
-
-     
-  }
-
-  handleFormSubmit = event => {
-    //need to add logic to check this data with database
-
-    event.preventDefault();
-
-    this.setState({
-      name: "",
-      email: "",
-      password: "",
-    });
-  };
-
-  render() {
+    console.log(props);
     return (
       <div className="container">
 
@@ -103,25 +35,25 @@ export default class LoginForm extends React.Component {
                 <form className="form-group">
                   <input
                     className="form-control"
-                    value={this.state.name}
+                    value={props.registerName}
                     name="name"
-                    onChange={this.handleInputChange}
+                    onChange={(e) => props.handleRegistration(e)}
                     type="text"
                     placeholder="Full Name"
                   />
                   <input
                     className="form-control"
-                    value={this.state.email}
+                    value={props.registerEmail}
                     name="email"
-                    onChange={this.handleInputChange}
+                    onChange={(e) => props.handleRegistration(e)}
                     type="email"
                     placeholder="Email Address"
                   />
                   <input
                     className="form-control"
-                    value={this.state.password}
+                    value={props.registerPassword}
                     name="password"
-                    onChange={this.handleInputChange}
+                    onChange={(e) => props.handleRegistration(e)}
                     type="password"
                     placeholder="Password"
                   />
@@ -138,7 +70,7 @@ export default class LoginForm extends React.Component {
                 <button
                   type="button"
                   className="btn btn-primary"
-                  onClick={this.handleSignUp}
+                  onClick={(e) => props.handleSignUp(e)}
                   data-dismiss="modal"
                 >
                   Save New Account
@@ -160,25 +92,25 @@ export default class LoginForm extends React.Component {
         <div className="row" id="form">
           <div className="col-sm" />
           <div className="col-sm-6">
-
+{/* 
           {
             this.state.userID > 0 ? <p>Welcome user number {this.state.userID}</p> : null
           }
-          
+           */}
             <form className="form-group">
               <input
                 className="form-control"
-                value={this.state.email}
+                value={props.email}
                 name="email"
-                onChange={this.handleInputChange}
+                onChange={(e) => props.handleInputChange(e)}
                 type="email"
                 placeholder="Email Address"
               />
               <input
                 className="form-control"
-                value={this.state.password}
+                value={props.password}
                 name="password"
-                onChange={this.handleInputChange}
+                onChange={(e) => props.handleInputChange(e)}
                 type="password"
                 placeholder="Password"
               />
@@ -186,7 +118,7 @@ export default class LoginForm extends React.Component {
               <button
                 type="button"
                 className="btn btn-primary"
-                onClick={this.handleFormSubmit}
+                onClick={(e) => props.handleFormSubmit(e)}
               >
                 Submit
               </button>
@@ -203,6 +135,8 @@ export default class LoginForm extends React.Component {
           <div className="col-sm" />
         </div>
       </div>
-    );
-  }
+    )
+  
 }
+
+export default LoginForm;
