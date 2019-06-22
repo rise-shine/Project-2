@@ -1,5 +1,5 @@
 import React from "react";
-
+import '../Card/Card.css'
 
 function Card(props) {
   return (
@@ -16,7 +16,7 @@ function Card(props) {
             <strong>Gift:</strong> {props.gift}
           </li>
           <li>
-            <strong>Price:</strong> {props.price}
+            <strong>Price:</strong> ${props.price}
           </li>
           <li>
             <strong>Purchased:</strong> {props.completed}

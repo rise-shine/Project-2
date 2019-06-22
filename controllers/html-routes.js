@@ -15,12 +15,12 @@ var app = require('express').Router();
   });
 
   // Recipient route loads recipient.html
-  app.get("/cms", function(req, res) {
+  app.get("/recipient", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/recipient.html"));
   });
 
   // Holiday route loads holiday.html
-  app.get("/blog", function(req, res) {
+  app.get("/holiday", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/holiday.html"));
   });
 module.exports = app

@@ -3,8 +3,9 @@ import Wrapper from "./components/Wrapper";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import LoginForm from "./components/LoginForm/login";
-import Card from "./components/Card/Card";
 import cardInfo from "./components/Card/cardInfo.json";
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import giftList from "./components/giftList";
 
 class App extends React.Component {
   state = {
@@ -13,19 +14,15 @@ class App extends React.Component {
 
   render() {
     return (
+      
       <Wrapper>
+        <Router>
         <Navbar />
-        <LoginForm />
-        {this.state.cardInfo.map(card => (
-          <Card
-            id={card.id}
-            name={card.friend}
-            gift={card.gift}
-            price={card.price}
-            purchased={card.completed}
-          />
-        ))}
-        
+        <Switch>
+        <Route path="/giftList" component={giftList}></Route>
+        <Route path='/' component={LoginForm}></Route>
+        </Switch>
+        </Router>
         <Footer />
       </Wrapper>
     );
@@ -33,3 +30,4 @@ class App extends React.Component {
 }
 
 export default App;
+
