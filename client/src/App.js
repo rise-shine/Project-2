@@ -19,8 +19,8 @@ class App extends React.Component {
         <Router>
         <Navbar />
         <Switch>
-        <Route path="/giftList" component={giftList}></Route>
         <Route path='/' component={LoginForm}></Route>
+        <Route path="/giftList" component={giftList}></Route>
         </Switch>
         </Router>
         <Footer />
