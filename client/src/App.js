@@ -2,7 +2,7 @@ import React from "react";
 import Wrapper from "./components/Wrapper";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
-import LoginForm from "./components/login.js";
+import LoginForm from "./components/login";
 
 class App extends React.Component {
   render() {
@@ -10,6 +10,7 @@ class App extends React.Component {
       <Wrapper>
         <Navbar />
         <LoginForm />
+
         <Footer />
       </Wrapper>
     );

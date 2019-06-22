@@ -1,26 +1,34 @@
 import React from "react";
-import SignUpform from "./signup";
+
+//import Modal from "react-bootstrap/Modal";
+//import Button from "react-bootstrap/Button";
+
 import "./login.css";
 
 export default class LoginForm extends React.Component {
   state = {
     email: "",
-    password: "",
-    showModal: false
+    password: ""
   };
-  handleClick = event => {
-    event.preventDefault();
-    this.setState({
-      showModal: !this.state.showModal
-    });
-  };
-  signUp = () => {
-    if (this.state.showModal) {
-      return <SignUpform />;
-    } else {
-      return null;
-    }
-  };
+  constructor(props, context) {
+    super(props, context);
+
+    this.handleShow = this.handleShow.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+
+    this.state = {
+      show: false
+    };
+  }
+
+  handleClose() {
+    this.setState({ show: false });
+  }
+
+  handleShow() {
+    this.setState({ show: true });
+  }
+
   handleInputChange = event => {
     const { forminput, value } = event.target;
     this.setState({
@@ -42,6 +50,69 @@ export default class LoginForm extends React.Component {
   render() {
     return (
       <div className="container">
+        <div
+          className="modal fade"
+          id="exampleModal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog modal-dialog-centered" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel">
+                  Create a new Account. Enter an email address and password.
+                </h5>
+                <button
+                  type="button"
+                  className="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                <form className="form-group">
+                  <input
+                    className="form-control"
+                    value={this.state.firstName}
+                    forminput="email"
+                    onChange={this.handleInputChange}
+                    type="email"
+                    placeholder="Email Address"
+                  />
+                  <input
+                    className="form-control"
+                    value={this.state.lastName}
+                    forminput="password"
+                    onChange={this.handleInputChange}
+                    type="text"
+                    placeholder="Password"
+                  />
+                </form>
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Close Without Saving
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={this.handleFormSubmit}
+                >
+                  Save New Account
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="row" id="picture">
           <img
             src={require("../images/giftbox.jpg")}
@@ -72,22 +143,24 @@ export default class LoginForm extends React.Component {
               />
 
               <button
+                type="button"
                 className="btn btn-primary"
                 onClick={this.handleFormSubmit}
               >
                 Submit
               </button>
               <button
-                className="btn btn-secondary"
-                onClick={this.handleClick}
-                label="New User"
-              />
-              {this.signUp}
+                type="button"
+                className="btn btn-success"
+                data-toggle="modal"
+                data-target="#exampleModal"
+              >
+                Create New Account
+              </button>
             </form>
           </div>
           <div className="col-sm" />
         </div>
-        <div className="row" id="spacer2" />
       </div>
     );
   }
