@@ -2,13 +2,18 @@
 
 .navbar-brand{
     color:white;
+    position:relative;
 
 }
-.navbar-link{
-    color:white;
-    text-align:right;
-}
+.nav-link{color:white;
+
+position:relative;}
+
 .dropdown-menu{
     color:white;
-    text-align:right;
+
+}
+.navbar-toggler-icon{
+    color:white;
+
 }

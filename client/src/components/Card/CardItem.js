@@ -1,22 +1,12 @@
 import React from "react";
 
-function CardItem(props) {
-  return (
-    <div className="card-item">
-      <ul>
-        <li>
-          <strong>Gift:</strong> {props.gift}
-        </li>
-        <li>
-          <strong>Price;</strong> {props.price}
-        </li>
-        <li>
-          <strong>Purchased:</strong> {props.purchased}
-        </li>
-      </ul>
-      <span className="remove">x</span>
-    </div>
-  );
-}
+const CardItem = props => (
+  <div className="list">
+    
+    <li>Gift idea: {props.gift}</li>
+    <li>Price: ${props.price}</li>
+    <li>Purchased?: {props.completed}</li>
+  </div>
+);
 
 export default CardItem;

@@ -90,10 +90,15 @@ class App extends React.Component {
     });
   };
 
+class App extends React.Component {
   render() {
     const { handleRegistration, handleInputChange, handleSignUp, handleFormSubmit} = this;
 
     return (
+<<<<<<< HEAD
+=======
+
+>>>>>>> 57ddcc6bfd02a83e8a5ce50224941701459899ac
       <Wrapper>
         <Router>
           <Navbar />
@@ -111,7 +116,11 @@ class App extends React.Component {
                 handleFormSubmit = {handleFormSubmit}
               />
             </Route>
-            <Route path="/giftList" component={giftList}></Route>
+
+            <Route path='/about' component={About}></Route>
+            <Route path='/gifts' component={giftList}></Route>
+            <Route path='/friends' component={friendsList}></Route>
+            
           </Switch>
         </Router>
         <Footer />
