@@ -3,7 +3,7 @@ import Card from "../Card";
 import Wrapper from "../Wrapper";
 import friendInfo from "../Friends/friends.json";
 
-export default class friendsList extends React.Component {
+class friendsList extends React.Component {
   state = {
     friendInfo
   };
@@ -14,7 +14,7 @@ export default class friendsList extends React.Component {
           <Card
             image={card.picture}
             name={card.name}
-            dob={card.dateOfBirt}
+            dob={card.dateOfBirth}
             relationship={card.relationship}
           />
         ))}
@@ -22,3 +22,5 @@ export default class friendsList extends React.Component {
     );
   }
 }
+
+export default friendsList

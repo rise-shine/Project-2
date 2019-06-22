@@ -3,12 +3,10 @@ import Wrapper from "./components/Wrapper";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import LoginForm from "./components/LoginForm/login";
-import cardInfo from "./components/Card/cardInfo.json";
 import About from "./components/About";
 import giftList from "./components/giftList";
+import friendsList from "./components/Friends";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-
-
 
 
 class App extends React.Component {
@@ -18,11 +16,12 @@ class App extends React.Component {
       <Wrapper>
         <Router>
         <Navbar />
-        <Switch> 
+        <Switch>
         <Route path='/about' component={About}></Route>
         <Route path='/gifts' component={giftList}></Route>
-        <Route path='/' component={LoginForm}></Route>
-        </Switch>
+        <Route path='/friends' component={friendsList}></Route>
+         <Route path='/' component={LoginForm}></Route>
+         </Switch>
         </Router>
         <Footer />
       </Wrapper>
