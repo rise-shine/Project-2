@@ -8,6 +8,7 @@ import cardInfo from "./components/Card/cardInfo.json";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import giftList from "./components/giftList";
 import axios from "axios";
+import Friends from "./components/Friends"; 
 
 
 class App extends React.Component {
@@ -88,17 +89,13 @@ class App extends React.Component {
       email: "",
       password: "",
     });
-  };
 
-class App extends React.Component {
+  };
+    
   render() {
     const { handleRegistration, handleInputChange, handleSignUp, handleFormSubmit} = this;
 
     return (
-<<<<<<< HEAD
-=======
-
->>>>>>> 57ddcc6bfd02a83e8a5ce50224941701459899ac
       <Wrapper>
         <Router>
           <Navbar />
@@ -117,9 +114,8 @@ class App extends React.Component {
               />
             </Route>
 
-            <Route path='/about' component={About}></Route>
             <Route path='/gifts' component={giftList}></Route>
-            <Route path='/friends' component={friendsList}></Route>
+            <Route path='/friends' component={Friends}></Route>
             
           </Switch>
         </Router>

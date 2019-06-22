@@ -8,7 +8,7 @@ router.get("/", function(req, res) {
 // After the user signs in, the code will read the DB. Then, it will render the friends in the welcome page
 router.get("/welcome", function(req, res) {
   
-  db.Friend.findAll()
+  db.User.findAll()
     
     .then(function(dbFriend) {
         return res.json(dbFriend);
@@ -32,7 +32,7 @@ router.post("/create", function(req, res) {
 
       console.log(response.dataValues.id);
       res.json({userID: response.dataValues.id});
-      return res.redirect("/giftList");
+      // return res.redirect("/giftList");
     }).catch(err => {
       console.log(err);
     });
