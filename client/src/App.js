@@ -25,7 +25,7 @@ class App extends React.Component {
             purchased={card.completed}
           />
         ))}
-        
+
         <Footer />
       </Wrapper>
     );
