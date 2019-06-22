@@ -5,9 +5,9 @@ import React from "react";
 
 import "./login.css";
 
-
 export default class LoginForm extends React.Component {
   state = {
+    name: "",
     email: "",
     password: ""
   };
@@ -43,6 +43,7 @@ export default class LoginForm extends React.Component {
     event.preventDefault();
 
     this.setState({
+      name: "",
       email: "",
       password: ""
     });
@@ -63,7 +64,8 @@ export default class LoginForm extends React.Component {
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title" id="exampleModalLabel">
-                  Create a new Account. Enter an email address and password.
+                  Create a new Account. Enter you full name, an email address
+                  and password.
                 </h5>
                 <button
                   type="button"
@@ -78,7 +80,15 @@ export default class LoginForm extends React.Component {
                 <form className="form-group">
                   <input
                     className="form-control"
-                    value={this.state.firstName}
+                    value={this.state.name}
+                    forminput="name"
+                    onChange={this.handleInputChange}
+                    type="text"
+                    placeholder="Full Name"
+                  />
+                  <input
+                    className="form-control"
+                    value={this.state.email}
                     forminput="email"
                     onChange={this.handleInputChange}
                     type="email"
@@ -86,7 +96,7 @@ export default class LoginForm extends React.Component {
                   />
                   <input
                     className="form-control"
-                    value={this.state.lastName}
+                    value={this.state.password}
                     forminput="password"
                     onChange={this.handleInputChange}
                     type="text"
@@ -116,11 +126,7 @@ export default class LoginForm extends React.Component {
 
         <div className="row" id="picture">
           <img
-<<<<<<< HEAD
-            src={require("../images/giftbox.jpg")}
-=======
-            src= ""
->>>>>>> be2710d17ac6b54ff93dcdcbd176388f3a8d5c6d
+            src={require("../../images/giftbox.jpg")}
             className="img-fluid"
             alt="gift boxes"
           />
@@ -132,7 +138,7 @@ export default class LoginForm extends React.Component {
             <form className="form-group">
               <input
                 className="form-control"
-                value={this.state.firstName}
+                value={this.state.email}
                 forminput="email"
                 onChange={this.handleInputChange}
                 type="email"
@@ -140,7 +146,7 @@ export default class LoginForm extends React.Component {
               />
               <input
                 className="form-control"
-                value={this.state.lastName}
+                value={this.state.password}
                 forminput="password"
                 onChange={this.handleInputChange}
                 type="text"
