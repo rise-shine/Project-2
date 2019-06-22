@@ -2,9 +2,8 @@ import React from "react";
 import "./login.css";
 import axios from "axios";
 
-
 export default class LoginForm extends React.Component {
-  
+
   constructor(props, context) {
     super(props, context);
 
@@ -65,16 +64,6 @@ export default class LoginForm extends React.Component {
 
     event.preventDefault();
 
-    // const { name, email, password } = this.state;
-
-    // axios.post("/api/user/create", { name, email, password })
-    //   .then(response => {
-    //     this.setState({
-    //       userID: response.data.id,
-    //       show: false
-    //     })
-    //   });
-
     this.setState({
       name: "",
       email: "",
@@ -98,7 +87,8 @@ export default class LoginForm extends React.Component {
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title" id="exampleModalLabel">
-                  Create a new Account. Enter your name, an email address and password.
+                  Create a new Account. Enter you full name, an email address
+                  and password.
                 </h5>
                 <button
                   type="button"
@@ -117,7 +107,7 @@ export default class LoginForm extends React.Component {
                     name="name"
                     onChange={this.handleInputChange}
                     type="text"
-                    placeholder="Name"
+                    placeholder="Full Name"
                   />
                   <input
                     className="form-control"

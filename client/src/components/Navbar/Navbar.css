@@ -1,10 +1,14 @@
+
+
 .navbar-brand{
     color:white;
 
 }
 .navbar-link{
     color:white;
+    text-align:right;
 }
 .dropdown-menu{
     color:white;
+    text-align:right;
 }
