@@ -1,7 +1,7 @@
 import React from "react";
-import Card from "../Card"
-import Wrapper from "../Wrapper";
-import cardInfo from "../Card/cardInfo.json"
+import Card from '../Card/'
+import Wrapper from '../Wrapper';
+import cardInfo from '../Card/cardInfo.json'
 
 class giftList extends React.Component {
   state = {

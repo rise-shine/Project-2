@@ -4,23 +4,24 @@ import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import LoginForm from "./components/LoginForm/login";
 import cardInfo from "./components/Card/cardInfo.json";
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import About from "./components/About";
 import giftList from "./components/giftList";
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+
+
+
 
 class App extends React.Component {
-  state = {
-    cardInfo
-  };
-
   render() {
     return (
-      
+
       <Wrapper>
         <Router>
         <Navbar />
-        <Switch>
+        <Switch> 
+        <Route path='/about' component={About}></Route>
+        <Route path='/gifts' component={giftList}></Route>
         <Route path='/' component={LoginForm}></Route>
-        <Route path="/giftList" component={giftList}></Route>
         </Switch>
         </Router>
         <Footer />
