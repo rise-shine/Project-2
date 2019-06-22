@@ -1,5 +1,5 @@
 import React from "react";
-import Card from "../Card";
+import Card from "../Card/";
 import Wrapper from "../Wrapper";
 import friendInfo from "../Friends/friends.json";
 
