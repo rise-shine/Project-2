@@ -116,11 +116,7 @@ export default class LoginForm extends React.Component {
 
         <div className="row" id="picture">
           <img
-<<<<<<< HEAD
-            src={require("../images/giftbox.jpg")}
-=======
-            src= ""
->>>>>>> be2710d17ac6b54ff93dcdcbd176388f3a8d5c6d
+            src={require("../../images/giftbox.jpg")}
             className="img-fluid"
             alt="gift boxes"
           />

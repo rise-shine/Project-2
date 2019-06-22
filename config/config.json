@@ -1,11 +1,7 @@
 {
   "development": {
     "username": "root",
-<<<<<<< HEAD
-    "password": "lokidog_01",
-=======
-    "password": "0991am03",
->>>>>>> be2710d17ac6b54ff93dcdcbd176388f3a8d5c6d
+    "password": "",
     "database": "giftreg_db",
     "host": "127.0.0.1",
     "dialect": "mysql",
