@@ -1,10 +1,12 @@
 import React from "react";
 import CardItem from "./CardItem";
 
+
 const Card = props => (
   <div className="card">
     <div className="img-container">
       <img alt={props.name} src={props.image} />
+
     </div>
     <div className="name">
       <li>
