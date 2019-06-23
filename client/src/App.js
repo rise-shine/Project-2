@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import LoginForm from "./components/LoginForm/login";
 // import LandingPage from "./components/LandingPage";
 import cardInfo from "./components/Card/cardInfo.json";
+import friends from "./friends.json";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import giftList from "./components/giftList";
 import axios from "axios";
@@ -25,9 +26,11 @@ class App extends React.Component {
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleSignUp = this.handleSignUp.bind(this);
     this.handleRegistration = this.handleRegistration.bind(this);
+    this.addGift = this.addGift.bind(this);
 
     this.state = {
       cardInfo,
+      friends,
       show: false,
       name: "",
       email: "",
@@ -94,9 +97,15 @@ class App extends React.Component {
     });
 
   };
+
+  addGift = event => {
+
+    event.preventDefault();
+    console.log("hi");
+  };
     
   render() {
-    const { handleRegistration, handleInputChange, handleSignUp, handleFormSubmit} = this;
+    const { handleRegistration, handleInputChange, handleSignUp, handleFormSubmit, addGift} = this;
 
     return (
       <Wrapper>
@@ -104,7 +113,22 @@ class App extends React.Component {
           <Navbar userName={this.state.name} isLoggedIn={this.state.isLoggedIn}/>
           <Switch>
             {this.state.isLoggedIn ?
-              <Route to='/friends' component={Friends}/> : <Route exact path='/'>
+              <Route to='/friends'>
+
+                {
+                  this.state.friends.length > 0 ?
+                    this.state.friends.map(friend => (
+                      <Friends
+                        name={friend.name}
+                        dateOfBirth={friend.dateOfBirth}
+                        relationship={friend.relationship}
+                        addGift={addGift}
+                      />
+                    )) :
+                    <Friends addGift={addGift}/>
+                }
+                
+              </Route> : <Route exact path='/'>
                 <LoginForm 
                   registerEmail={this.state.email} 
                   registerName={this.state.name} 
@@ -118,8 +142,8 @@ class App extends React.Component {
                 />
               </Route>}
 
-              <Route path='/friends' component={Friends}></Route>  
-              <Route path='/gifts' component={giftList}></Route>
+            <Route path='/friends' component={Friends}></Route>  
+            <Route path='/gifts' component={giftList}></Route>
             
             
           </Switch>
