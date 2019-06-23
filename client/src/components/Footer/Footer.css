@@ -1,10 +1,15 @@
-footer{position: fixed;
+@import url('https://fonts.googleapis.com/css?family=Mali&display=swap');
 
+footer{
+    position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
     border-top: 2px solid tomato;
-    color: #ffffff;
-    background-color:#666666;
+    color: orangered;
+    background-color: rgb(255, 238, 0);
     text-align: center;
-margin-top:-50px;}
+    margin-top:-50px;
+    font-family: 'Mali', cursive;
+    font-weight: bold;
+}
