@@ -6,12 +6,26 @@ router.get("/", function(req, res) {
 });
 
 // After the user signs in, the code will read the DB. Then, it will render the friends in the welcome page
-router.get("/welcome", function(req, res) {
+router.get("/welcome/:email", function(req, res) {
   
-  db.User.findAll()
+  db.User.findOne({
+
+    where: {
+      email: req.params.email
+    }
+  })
     
-    .then(function(dbFriend) {
-        return res.json(dbFriend);
+    .then(function(response) {
+       
+        console.log(response.dataValues.id, response.dataValues.name, response.dataValues.email);
+        res.json({
+          userID: response.dataValues.id,
+          name: response.dataValues.name
+        });
+        
+    }).catch(err => {
+      console.log(err);
+      
     });
 });
 
@@ -35,50 +49,50 @@ router.post("/create", function(req, res) {
         userID: response.dataValues.id,
         name: response.dataValues.name
       });
-      // return res.redirect("/giftList");
+      
     }).catch(err => {
       console.log(err);
     });
 });
 
-// put route to devour a burger
-router.put("/friends/update", function(req, res) {
-  // If we are given a customer, create the customer and give them this devoured burger
-  if (req.body.friend) {
-    db.Friend.create({
-      friend: req.body.friend,
-    })
-      .then(function(dbFriend) {
-        return db.Friend.update(
-          {
-            name: req.body.name
-          },
-          {
-            where: {
-              id: req.body.friend_id
-            }
-          }
-        );
-      })
-      .then(function(dbFriend) {
-        res.json("/");
-      });
-  }
-  // If we aren't given a customer, just update the burger to be devoured
-  else {
-    db.Friend.update(
-      {
-        name: req.body.name
-      },
-      {
-        where: {
-          id: req.body.friend_id
-        }
-      }
-    ).then(function(dbFriend) {
-      res.json("/");
-    });
-  }
-});
+// // put route to devour a burger
+// router.put("/friends/update", function(req, res) {
+//   // If we are given a customer, create the customer and give them this devoured burger
+//   if (req.body.friend) {
+//     db.Friend.create({
+//       friend: req.body.friend,
+//     })
+//       .then(function(dbFriend) {
+//         return db.Friend.update(
+//           {
+//             name: req.body.name
+//           },
+//           {
+//             where: {
+//               id: req.body.friend_id
+//             }
+//           }
+//         );
+//       })
+//       .then(function(dbFriend) {
+//         res.json("/");
+//       });
+//   }
+//   // If we aren't given a customer, just update the burger to be devoured
+//   else {
+//     db.Friend.update(
+//       {
+//         name: req.body.name
+//       },
+//       {
+//         where: {
+//           id: req.body.friend_id
+//         }
+//       }
+//     ).then(function(dbFriend) {
+//       res.json("/");
+//     });
+//   }
+// });
 
 module.exports = router;

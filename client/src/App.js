@@ -75,17 +75,21 @@ class App extends React.Component {
       .then(response => {
 
         console.log(response);
+
         this.setState({
           name: response.data.name,
+          email: response.data.email,
           userID: response.data.userID,
-          show: false,
           isLoggedIn: true
-        })
+        });
 
         console.log(this.state)
 
-      });
+        localStorage.clear();
+        localStorage.setItem("id", this.state.userID);
 
+      })
+      
      
   }
 
@@ -94,10 +98,32 @@ class App extends React.Component {
 
     event.preventDefault();
 
-    this.setState({
-      email: "",
-      password: "",
-    });
+    const { email, password } = this.state;
+    
+    axios.get("/api/user/welcome/" + email).then(response => {
+
+      // console.log(response);
+
+      console.log("hi");
+      if (response.data.userID) {
+
+        this.setState({
+          userID: response.data.userID,
+          name: response.data.name,
+          isLoggedIn: true
+        });
+  
+        localStorage.clear();
+        localStorage.setItem("id", this.state.userID);
+
+      } 
+      
+    })
+
+    // this.setState({
+    //   email: "",
+    //   password: "",
+    // });
 
   };
 
