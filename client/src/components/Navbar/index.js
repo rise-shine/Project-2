@@ -1,7 +1,7 @@
 import React from "react";
 import "../Navbar/Navbar.css";
 
-function Navbar() {
+function Navbar(props) {
   return (
         <nav className="navbar navbar-expand-lg navbar-danger bg-danger">
   <a className="navbar-brand" href="/">Gift Scribe</a>
@@ -10,10 +10,14 @@ function Navbar() {
   </button>
 
   <div className="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul className="navbar-nav mr-auto">
+    <ul className="navbar-nav ml-auto">
+      {props.isLoggedIn ? 
+
+      <li className="nav-link conditional">Welcome, {props.userName}!</li> :
+
       <li className="nav-item active">
         <a className="nav-link" href="/">Login <span className="sr-only">(current)</span></a>
-      </li>
+      </li> }
       <li className="nav-item">
         <a className="nav-link" href="#"></a>
       </li>
