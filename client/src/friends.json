@@ -4,5 +4,9 @@
         "name": "amanda",
         "dateOfBirth": "1990/08/30",
         "relationship": "me"
-    }
+    },
+    {"id":2,
+    "name": "halon",
+"dateOfBirth":"1990/08/30",
+"relationship":"me"}
 ]
