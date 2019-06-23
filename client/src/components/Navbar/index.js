@@ -9,18 +9,32 @@ function Navbar(props) {
     <span className="navbar-toggler-icon">Menu</span>
   </button>
 
+{props.isLoggedIn ? 
   <div className="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul className="navbar-nav ml-auto">
-      {props.isLoggedIn ? 
+    
+      <ul className="navbar-nav ml-auto">
+        <li className="nav-item active">Welcome, {props.userName}!</li>
+        
+        <li className="nav-item active">
+          <a className="nav-link" onClick={(e) =>props.logOut(e)}>Logout</a>
+        </li>
+      </ul> 
+      
+      </div> :
 
-      <li className="nav-link conditional">Welcome, {props.userName}!</li> :
-
-      <li className="nav-item active">
-        <a className="nav-link" id="login" href="/">Login <span className="sr-only">(current)</span></a>
-      </li> }
-      <li className="nav-item">
+<div className="collapse navbar-collapse" id="navbarSupportedContent">
+   
+      <ul className="navbar-nav ml-auto">
+        <li className="nav-item active">
+          <a className="nav-link" id="login" href="/">Login <span className="sr-only">(current)</span></a>
+        </li>
+      </ul> 
+      
+</div>}
+      {/* <li className="nav-item">
         <a className="nav-link" href="#"></a>
-      </li>
+      </li> */}
+      {/* <ul>
       <li className="nav-item dropdown">
         <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
          My Lists
@@ -33,7 +47,7 @@ function Navbar(props) {
         </div>
       </li>
     </ul>
-  </div>
+  </div> */}
 </nav>
   )
 }

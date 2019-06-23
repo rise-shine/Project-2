@@ -92,11 +92,6 @@ function LoginForm(props) {
         <div className="row" id="form">
           <div className="col-sm" />
           <div className="col-sm-6">
-{/* 
-          {
-            this.state.userID > 0 ? <p>Welcome user number {this.state.userID}</p> : null
-          }
-           */}
             <form className="form-group">
               <input
                 className="form-control"

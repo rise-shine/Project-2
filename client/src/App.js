@@ -3,19 +3,14 @@ import Wrapper from "./components/Wrapper";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import LoginForm from "./components/LoginForm/login";
-// import LandingPage from "./components/LandingPage";
 import cardInfo from "./components/Card/cardInfo.json";
 import friends from "./friends.json";
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import giftList from "./components/giftList";
 import axios from "axios";
 import Friends from "./components/Friends"; 
 
-
 class App extends React.Component {
-  // state = {
-  //   cardInfo
-  // };
 
   constructor(props, context) {
     super(props, context);
@@ -27,6 +22,11 @@ class App extends React.Component {
     this.handleSignUp = this.handleSignUp.bind(this);
     this.handleRegistration = this.handleRegistration.bind(this);
     this.addGift = this.addGift.bind(this);
+    this.seeGifts = this.seeGifts.bind(this);
+    this.logOut = this.logOut.bind(this);
+    this.handleFriendAdd = this.handleFriendAdd.bind(this);
+    this.addFriend = this.addFriend.bind(this);
+    
 
     this.state = {
       cardInfo,
@@ -36,7 +36,10 @@ class App extends React.Component {
       email: "",
       password: "",
       userID: 0,
-      isLoggedIn: false
+      isLoggedIn: false,
+      friendName: "",
+      friendDOB: "",
+      friendRelationship: ""
     };
   }
 
@@ -98,19 +101,55 @@ class App extends React.Component {
 
   };
 
+  logOut = event => {
+
+    event.preventDefault();
+    this.setState({
+      cardInfo,
+      friends,
+      show: false,
+      name: "",
+      email: "",
+      password: "",
+      userID: 0,
+      isLoggedIn: false,
+    })
+
+
+  };
+
   addGift = event => {
 
     event.preventDefault();
-    console.log("hi");
+    console.log("helloOOOO, gift");
+  };
+
+  seeGifts = event => {
+
+    event.preventDefault();
+    console.log("hello, gift");
+  };
+
+  handleFriendAdd = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
+  addFriend = event => {
+
+    event.preventDefault();
+    console.log("hello, friend");
   };
     
   render() {
-    const { handleRegistration, handleInputChange, handleSignUp, handleFormSubmit, addGift} = this;
+    const { handleRegistration, handleInputChange, handleSignUp, handleFormSubmit, addGift, addFriend, logOut, seeGifts, handleFriendAdd} = this;
 
     return (
       <Wrapper>
         <Router>
-          <Navbar userName={this.state.name} isLoggedIn={this.state.isLoggedIn}/>
+          <Navbar userName={this.state.name} isLoggedIn={this.state.isLoggedIn} logOut={logOut}/>
           <Switch>
             {this.state.isLoggedIn ?
               <Route to='/friends'>
@@ -123,6 +162,9 @@ class App extends React.Component {
                         dateOfBirth={friend.dateOfBirth}
                         relationship={friend.relationship}
                         addGift={addGift}
+                        addFriend={addFriend}
+                        seeGifts={seeGifts}
+                        handleFriendAdd={handleFriendAdd}
                       />
                     )) :
                     <Friends addGift={addGift}/>
