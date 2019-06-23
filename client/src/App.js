@@ -4,14 +4,14 @@ import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import LoginForm from "./components/LoginForm/login";
 import cardInfo from "./components/Card/cardInfo.json";
+import CardName from "./components/Card/CardName";
 import friends from "./friends.json";
-import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import giftList from "./components/giftList";
 import axios from "axios";
-import Friends from "./components/Friends"; 
+import Friends from "./components/Friends";
 
 class App extends React.Component {
-
   constructor(props, context) {
     super(props, context);
 
@@ -26,7 +26,6 @@ class App extends React.Component {
     this.logOut = this.logOut.bind(this);
     this.handleFriendAdd = this.handleFriendAdd.bind(this);
     this.addFriend = this.addFriend.bind(this);
-    
 
     this.state = {
       cardInfo,
@@ -66,32 +65,26 @@ class App extends React.Component {
   };
 
   handleSignUp = event => {
-
     event.preventDefault();
 
     const { name, email, password } = this.state;
-    
-    axios.post("/api/user/create", { name, email, password })
-      .then(response => {
 
-        console.log(response);
+    axios.post("/api/user/create", { name, email, password }).then(response => {
+      console.log(response);
 
-        this.setState({
-          name: response.data.name,
-          email: response.data.email,
-          userID: response.data.userID,
-          isLoggedIn: true
-        });
+      this.setState({
+        name: response.data.name,
+        email: response.data.email,
+        userID: response.data.userID,
+        isLoggedIn: true
+      });
 
-        console.log(this.state)
+      console.log(this.state);
 
-        localStorage.clear();
-        localStorage.setItem("id", this.state.userID);
-
-      })
-      
-     
-  }
+      localStorage.clear();
+      localStorage.setItem("id", this.state.userID);
+    });
+  };
 
   handleFormSubmit = event => {
     //need to add logic to check this data with database
@@ -99,36 +92,30 @@ class App extends React.Component {
     event.preventDefault();
 
     const { email, password } = this.state;
-    
-    axios.get("/api/user/welcome/" + email).then(response => {
 
+    axios.get("/api/user/welcome/" + email).then(response => {
       // console.log(response);
 
       console.log("hi");
       if (response.data.userID) {
-
         this.setState({
           userID: response.data.userID,
           name: response.data.name,
           isLoggedIn: true
         });
-  
+
         localStorage.clear();
         localStorage.setItem("id", this.state.userID);
-
-      } 
-      
-    })
+      }
+    });
 
     // this.setState({
     //   email: "",
     //   password: "",
     // });
-
   };
 
   logOut = event => {
-
     event.preventDefault();
     this.setState({
       cardInfo,
@@ -138,20 +125,16 @@ class App extends React.Component {
       email: "",
       password: "",
       userID: 0,
-      isLoggedIn: false,
-    })
-
-
+      isLoggedIn: false
+    });
   };
 
   addGift = event => {
-
     event.preventDefault();
     console.log("helloOOOO, gift");
   };
 
   seeGifts = event => {
-
     event.preventDefault();
     console.log("hello, gift");
   };
@@ -164,56 +147,69 @@ class App extends React.Component {
   };
 
   addFriend = event => {
-
     event.preventDefault();
     console.log("hello, friend");
   };
-    
+
   render() {
-    const { handleRegistration, handleInputChange, handleSignUp, handleFormSubmit, addGift, addFriend, logOut, seeGifts, handleFriendAdd} = this;
+    const {
+      handleRegistration,
+      handleInputChange,
+      handleSignUp,
+      handleFormSubmit,
+      addGift,
+      addFriend,
+      logOut,
+      seeGifts,
+      handleFriendAdd
+    } = this;
 
     return (
       <Wrapper>
         <Router>
-          <Navbar userName={this.state.name} isLoggedIn={this.state.isLoggedIn} logOut={logOut}/>
+          <Navbar
+            userName={this.state.name}
+            isLoggedIn={this.state.isLoggedIn}
+            logOut={logOut}
+          />
           <Switch>
-            {this.state.isLoggedIn ?
-              <Route to='/friends'>
-
-                {
-                  this.state.friends.length > 0 ?
-                    this.state.friends.map(friend => (
-                      <Friends
-                        name={friend.name}
-                        dateOfBirth={friend.dateOfBirth}
-                        relationship={friend.relationship}
-                        addGift={addGift}
-                        addFriend={addFriend}
-                        seeGifts={seeGifts}
-                        handleFriendAdd={handleFriendAdd}
-                      />
-                    )) :
-                    <Friends addGift={addGift}/>
-                }
-                
-              </Route> : <Route exact path='/'>
-                <LoginForm 
-                  registerEmail={this.state.email} 
-                  registerName={this.state.name} 
-                  registerPassword={this.state.password} 
-                  email={this.state.email} 
+            {this.state.isLoggedIn ? (
+              <Route to="/friends">
+                {this.state.friends.length > 0 ? (
+                  this.state.friends.map(friend => (
+                    <Friends
+                      name={friend.name}
+                      dateOfBirth={friend.dateOfBirth}
+                      relationship={friend.relationship}
+                      addGift={addGift}
+                      addFriend={addFriend}
+                      seeGifts={seeGifts}
+                      handleFriendAdd={handleFriendAdd}
+                    />
+                  ))
+                ) : (
+                  <Friends addGift={addGift} />
+                )}
+              </Route>
+             
+            ) : (
+              <Route exact path="/">
+                <LoginForm
+                  registerEmail={this.state.email}
+                  registerName={this.state.name}
+                  registerPassword={this.state.password}
+                  email={this.state.email}
                   password={this.state.password}
-                  handleRegistration = {handleRegistration}
-                  handleInputChange = {handleInputChange}
-                  handleSignUp = {handleSignUp}
-                  handleFormSubmit = {handleFormSubmit}
+                  handleRegistration={handleRegistration}
+                  handleInputChange={handleInputChange}
+                  handleSignUp={handleSignUp}
+                  handleFormSubmit={handleFormSubmit}
                 />
-              </Route>}
+              </Route>
+            )}
 
-            <Route path='/friends' component={Friends}></Route>  
-            <Route path='/gifts' component={giftList}></Route>
-            
-            
+            <Route path="/friends" component={Friends} />
+            <Route path="/gifts" component={giftList} />
           </Switch>
         </Router>
         <Footer />
@@ -223,4 +219,3 @@ class App extends React.Component {
 }
 
 export default App;
-
