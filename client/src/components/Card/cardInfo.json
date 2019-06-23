@@ -22,5 +22,13 @@
       "gift": "xbox",
       "price": 299,
       "completed": true
+    },
+    {
+      "id": 4,
+      "friend": "Susan",
+      "gift": "new car",
+      "price": 2999,
+      "completed": true
     }
+
   ]

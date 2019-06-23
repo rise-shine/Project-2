@@ -3,8 +3,9 @@ import Wrapper from "./components/Wrapper";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import LoginForm from "./components/LoginForm/login";
-import Card from "./components/Card/Card";
+
 import cardInfo from "./components/Card/cardInfo.json";
+import CardName from "./components/Card/CardName";
 
 class App extends React.Component {
   state = {
@@ -16,15 +17,7 @@ class App extends React.Component {
       <Wrapper>
         <Navbar />
         <LoginForm />
-        {this.state.cardInfo.map(card => (
-          <Card
-            id={card.id}
-            name={card.friend}
-            gift={card.gift}
-            price={card.price}
-            purchased={card.completed}
-          />
-        ))}
+        <CardName />
 
         <Footer />
       </Wrapper>
