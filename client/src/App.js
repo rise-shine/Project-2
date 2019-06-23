@@ -32,7 +32,8 @@ class App extends React.Component {
       name: "",
       email: "",
       password: "",
-      userID: 0
+      userID: 0,
+      isLoggedIn: false
     };
   }
 
@@ -69,8 +70,10 @@ class App extends React.Component {
 
         console.log(response);
         this.setState({
+          name: response.data.name,
           userID: response.data.userID,
-          show: false
+          show: false,
+          isLoggedIn: true
         })
 
         console.log(this.state)
@@ -98,24 +101,26 @@ class App extends React.Component {
     return (
       <Wrapper>
         <Router>
-          <Navbar />
+          <Navbar userName={this.state.name} isLoggedIn={this.state.isLoggedIn}/>
           <Switch>
-            <Route exact path='/'>
-              <LoginForm 
-                registerEmail={this.state.email} 
-                registerName={this.state.name} 
-                registerPassword={this.state.password} 
-                email={this.state.email} 
-                password={this.state.password}
-                handleRegistration = {handleRegistration}
-                handleInputChange = {handleInputChange}
-                handleSignUp = {handleSignUp}
-                handleFormSubmit = {handleFormSubmit}
-              />
-            </Route>
+            {this.state.isLoggedIn ?
+              <Route to='/friends' component={Friends}/> : <Route exact path='/'>
+                <LoginForm 
+                  registerEmail={this.state.email} 
+                  registerName={this.state.name} 
+                  registerPassword={this.state.password} 
+                  email={this.state.email} 
+                  password={this.state.password}
+                  handleRegistration = {handleRegistration}
+                  handleInputChange = {handleInputChange}
+                  handleSignUp = {handleSignUp}
+                  handleFormSubmit = {handleFormSubmit}
+                />
+              </Route>}
 
-            <Route path='/gifts' component={giftList}></Route>
-            <Route path='/friends' component={Friends}></Route>
+              <Route path='/friends' component={Friends}></Route>  
+              <Route path='/gifts' component={giftList}></Route>
+            
             
           </Switch>
         </Router>

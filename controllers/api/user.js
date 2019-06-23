@@ -30,8 +30,11 @@ router.post("/create", function(req, res) {
     // pass the result of our call
     .then(function(response) {
 
-      console.log(response.dataValues.id);
-      res.json({userID: response.dataValues.id});
+      console.log(response.dataValues.id, response.dataValues.name);
+      res.json({
+        userID: response.dataValues.id,
+        name: response.dataValues.name
+      });
       // return res.redirect("/giftList");
     }).catch(err => {
       console.log(err);
