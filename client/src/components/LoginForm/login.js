@@ -35,7 +35,7 @@ function LoginForm(props) {
                   className="form-control"
                   value={props.registerName}
                   name="name"
-                  onChange={e => props.handleRegistration(e)}
+                  onChange={e => props.handleInputChange(e)}
                   type="text"
                   placeholder="Full Name"
                 />
@@ -43,7 +43,7 @@ function LoginForm(props) {
                   className="form-control"
                   value={props.registerEmail}
                   name="email"
-                  onChange={e => props.handleRegistration(e)}
+                  onChange={e => props.handleInputChange(e)}
                   type="email"
                   placeholder="Email Address"
                 />
@@ -51,7 +51,7 @@ function LoginForm(props) {
                   className="form-control"
                   value={props.registerPassword}
                   name="password"
-                  onChange={e => props.handleRegistration(e)}
+                  onChange={e => props.handleInputChange(e)}
                   type="password"
                   placeholder="Password"
                 />

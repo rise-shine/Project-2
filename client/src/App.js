@@ -1,62 +1,57 @@
+//importing all the libraries and files we need
 import React from "react";
 import Wrapper from "./components/Wrapper";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import LoginForm from "./components/LoginForm/login";
 import cardInfo from "./components/Card/cardInfo.json";
-import CardName from "./components/Card/CardName";
+// import CardName from "./components/Card/CardName";
 import friends from "./friends.json";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import giftList from "./components/giftList";
 import axios from "axios";
 import Friends from "./components/Friends";
 
+//Creating the App class
 class App extends React.Component {
+  //Constructor that holds the state and binds all functions
   constructor(props, context) {
     super(props, context);
 
-    this.handleShow = this.handleShow.bind(this);
-    this.handleClose = this.handleClose.bind(this);
+    // this.handleShow = this.handleShow.bind(this);
+    // this.handleClose = this.handleClose.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleSignUp = this.handleSignUp.bind(this);
-    this.handleRegistration = this.handleRegistration.bind(this);
     this.addGift = this.addGift.bind(this);
     this.seeGifts = this.seeGifts.bind(this);
     this.logOut = this.logOut.bind(this);
-    this.handleFriendAdd = this.handleFriendAdd.bind(this);
     this.addFriend = this.addFriend.bind(this);
 
     this.state = {
       cardInfo,
-      friends,
-      show: false,
+      friends: [],
+      // show: false,
       name: "",
       email: "",
       password: "",
       userID: 0,
       isLoggedIn: false,
       friendName: "",
-      friendDOB: "",
-      friendRelationship: ""
+      dateOfBirth: "",
+      relationship: ""
     };
   }
 
-  handleClose() {
-    this.setState({ show: false });
-  }
+  // handleClose() {
+  //   this.setState({ show: false });
+  // }
 
-  handleShow() {
-    this.setState({ show: true });
-  }
+  // handleShow() {
+  //   this.setState({ show: true });
+  // }
 
-  handleRegistration = event => {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
-  };
-
+//Function that will handle input changes
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
@@ -64,6 +59,7 @@ class App extends React.Component {
     });
   };
 
+  //Function that will handle registration
   handleSignUp = event => {
     event.preventDefault();
 
@@ -86,6 +82,7 @@ class App extends React.Component {
     });
   };
 
+  //Function that will handle sign in
   handleFormSubmit = event => {
     //need to add logic to check this data with database
 
@@ -93,8 +90,7 @@ class App extends React.Component {
 
     const { email, password } = this.state;
 
-    axios.get("/api/user/welcome/" + email).then(response => {
-      // console.log(response);
+    axios.get("/api/user/welcome/" + email + "/" + password).then(response => {
 
       console.log("hi");
       if (response.data.userID) {
@@ -106,21 +102,34 @@ class App extends React.Component {
 
         localStorage.clear();
         localStorage.setItem("id", this.state.userID);
+      } else {
+        alert("Your password is incorrect.")
       }
+    }).then(() => {
+
+      axios.get("api/friend/list/" + this.state.userID).then(response => {
+
+        console.log(response.data);
+        // this.setState(prevState => {
+        //   return {
+        //     friends: [...prevState.friends, ...newFriend]
+        //   }
+        // });
+
+      });
+        
+        
     });
 
-    // this.setState({
-    //   email: "",
-    //   password: "",
-    // });
   };
 
+  //Function that will handle sign out
   logOut = event => {
     event.preventDefault();
     this.setState({
       cardInfo,
       friends,
-      show: false,
+      // show: false,
       name: "",
       email: "",
       password: "",
@@ -152,29 +161,53 @@ class App extends React.Component {
     console.log("hello, gift");
   };
 
-  handleFriendAdd = event => {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
-  };
+  // handleFriendAdd = event => {
+  //   const { name, value } = event.target;
+  //   this.setState({
+  //     [name]: value
+  //   });
+  // };
 
   addFriend = event => {
     event.preventDefault();
     console.log("hello, friend");
+
+    const id = localStorage.getItem("id");
+
+    const { friendName, friendDOB, friendRelationship } = this.state;
+
+    console.log(this.state)
+
+    axios.post("/api/friend/create/" + id, { friendName, friendDOB, friendRelationship }).then(response => {
+      console.log(response);
+
+      const newFriend = [{
+        friendName: response.data.friendName,
+        dateOfBirth: response.data.friendDOB,
+        relationship: response.data.friendRelationship,
+        id: response.data.friendID
+      }];
+
+      this.setState(prevState => {
+        return{
+          friends: [...prevState.friends, ...newFriend]
+        }
+      });
+
+      console.log(this.state);
+    });
+    
   };
 
   render() {
     const {
-      handleRegistration,
       handleInputChange,
       handleSignUp,
       handleFormSubmit,
       addGift,
       addFriend,
       logOut,
-      seeGifts,
-      handleFriendAdd
+      seeGifts
     } = this;
 
     return (
@@ -191,17 +224,18 @@ class App extends React.Component {
                 {this.state.friends.length > 0 ? (
                   this.state.friends.map(friend => (
                     <Friends
+                      key={friend.id}
                       name={friend.name}
                       dateOfBirth={friend.dateOfBirth}
                       relationship={friend.relationship}
                       addGift={addGift}
                       addFriend={addFriend}
                       seeGifts={seeGifts}
-                      handleFriendAdd={handleFriendAdd}
+                      handleInputChange={handleInputChange}
                     />
                   ))
                 ) : (
-                  <Friends addGift={addGift} />
+                  <Friends addFriend={addFriend} addGift={addGift} handleInputChange={handleInputChange}/>
                 )}
               </Route>
              
@@ -213,7 +247,6 @@ class App extends React.Component {
                   registerPassword={this.state.password}
                   email={this.state.email}
                   password={this.state.password}
-                  handleRegistration={handleRegistration}
                   handleInputChange={handleInputChange}
                   handleSignUp={handleSignUp}
                   handleFormSubmit={handleFormSubmit}
