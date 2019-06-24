@@ -132,6 +132,19 @@ class App extends React.Component {
   addGift = event => {
     event.preventDefault();
     console.log("helloOOOO, gift");
+    const { userId, giftName, giftDesc, holiday, friendId } = this.state;
+    this.setState({
+      userId: response.data.userId,
+      giftName: response.data.giftName,
+      giftDesc: response.data.giftDesc,
+      holiday: response.data.holiday,
+      friendId: response.data.friendId
+    });
+    axios
+      .post("/api/friend/create", { name, email, password })
+      .then(response => {
+        console.log(response);
+      });
   };
 
   seeGifts = event => {
@@ -191,7 +204,6 @@ class App extends React.Component {
                   <Friends addGift={addGift} />
                 )}
               </Route>
-             
             ) : (
               <Route exact path="/">
                 <LoginForm
