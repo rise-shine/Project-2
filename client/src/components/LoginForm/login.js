@@ -2,7 +2,15 @@ import React from "react";
 import "./login.css";
 
 function LoginForm(props) {
-  console.log(props);
+  
+
+  console.log(props.isLoggedIn);
+  if (props.isLoggedIn) {
+    props.history.push("/friends");
+  }
+  
+  
+
   return (
     <div className="container" id="containerId">
       <div
