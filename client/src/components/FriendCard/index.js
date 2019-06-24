@@ -1,4 +1,5 @@
 import React from "react";
+import "./FriendCard.css";
 
 function FriendCard(props) {
 
@@ -29,6 +30,7 @@ function FriendCard(props) {
                 >
                   <button
                     className="btn btn-success"
+                    id="addGiftButtonFC"
                     onClick={e => props.addGift(e)}
                   >
                     Add gift
@@ -47,8 +49,8 @@ function FriendCard(props) {
                       <input placeholder="Price" type="number" name="price" />
                     </label>
                     <br />
-                    <button type="button" className="btn btn-success">
-                      submit
+                    <button type="button" className="btn btn-success" id="submitButtonFC">
+                      Submit
                     </button>
                   </form>
                 </div>
@@ -68,9 +70,10 @@ function FriendCard(props) {
                 >
                   <button
                     className="btn btn-success"
+                    id="seeAllGiftsButton"
                     onClick={e => props.seeGifts(e)}
                   >
-                    See all Gifts added
+                    See all gifts added
                   </button>
                 </a>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">

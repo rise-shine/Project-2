@@ -4,6 +4,8 @@
     background-image: url("https://upload.wikimedia.org/wikipedia/commons/4/42/Looseleaf_Legal_Pad_Background.svg");
     height: 600px;
     padding-top: 70px;
+    align-content: center;
+    margin: auto;
 }
 
 #addNewFriendButton{
@@ -12,9 +14,10 @@
     background-color: orange;
     border-color: orangered;
     color: red;
-    margin: 5px;
-    margin-left:170px;
+    margin: auto;
     font-family: 'Mali', cursive;
+    display: block;
+    margin-top: 15px;
 }
   
 #addNewFriendButton:hover {
