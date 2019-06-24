@@ -13,10 +13,10 @@ function Navbar(props) {
   <div className="collapse navbar-collapse" id="navbarSupportedContent">
     
       <ul className="navbar-nav ml-auto">
-        <li className="nav-item active">Welcome, {props.userName}!</li>
+        <li className="nav-item active" id="welcome">Welcome, {props.userName}!</li>
         
         <li className="nav-item active">
-          <a className="nav-link" href="/" onClick={(e) => {
+          <a className="nav-link" id="logout" href="/" onClick={(e) => {
             props.history.push("/")
             props.logOut(e)
             }}>Logout</a>

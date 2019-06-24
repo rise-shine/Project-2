@@ -1,5 +1,6 @@
 import React from "react";
 import FriendCard from "../FriendCard";
+import "./friends.css";
 
 function Friends(props) {
   
