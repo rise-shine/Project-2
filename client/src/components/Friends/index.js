@@ -91,17 +91,18 @@ function Friends(props) {
 
         {props.name && props.dateOfBirth && props.relationship ? (
           <div className="name">
-            <li>
+            <p>
               <strong>Name:</strong> {props.name}
-            </li>
-            <li className="drop-gift">
+            </p>
+            <p className="drop-gift">
               <strong>Date of birth:</strong> {props.dateOfBirth}
-            </li>
-            <li className="drop-gift">
+            </p>
+            <p className="drop-gift">
               <strong>Relationship:</strong> {props.relationship}
-            </li>
+            </p>
             <div className="add-gift-button">
-              <li className="drop-gift">
+              {/* ADDING DROP DOWN ... -Halon */}
+              <h6 className="drop-gift">
                 <a
                   className="card-dropdown-toggle"
                   href="#"
@@ -111,7 +112,12 @@ function Friends(props) {
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  <button className= "btn btn-success" onClick={e => props.addGift(e)}>Add gift</button>
+                  <button
+                    className="btn btn-success"
+                    onClick={e => props.addGift(e)}
+                  >
+                    Add gift
+                  </button>
                 </a>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a className="dropdown-item" href="/action1" />
@@ -120,20 +126,43 @@ function Friends(props) {
                       Gifts:
                       <input placeholder="Gifts" type="text" name="gift" />
                     </label>
+                    <br></br>
                     <label>
                       $:
                       <input placeholder="Price" type="number" name="price" />
                     </label>
-                    <br></br>
-                    <button type="button" className="btn btn-success" >submit</button>
+                    <br />
+                    <button type="button" className="btn btn-success">
+                      submit
+                    </button>
                   </form>
                 </div>
-              </li>
+              </h6>
             </div>
-
-            <button onClick={e => props.seeGifts(e)}>
-              See all Gifts added
-            </button>
+            {/* ADDING DROPDOWN FOR SEE GIFTS ... -Halon */}
+            <div className="see-gifts-dropdown">
+              <h6 className="drop-gift">
+                <a
+                  className="card-dropdown-toggle"
+                  href="#"
+                  id="cardDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <button
+                    className="btn btn-success"
+                    onClick={e => props.seeGifts(e)}
+                  >
+                    See all Gifts added
+                  </button>
+                </a>
+                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a className="dropdown-item" href="/action1" />
+                </div>
+              </h6>
+            </div>
           </div>
         ) : (
           <div className="name">

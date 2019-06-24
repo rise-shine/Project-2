@@ -132,6 +132,19 @@ class App extends React.Component {
   addGift = event => {
     event.preventDefault();
     console.log("helloOOOO, gift");
+    const { itemName, completed,FriendId} = this.state;
+
+    axios.post("/api/gifts/create", { itemName, completed,FriendId}).then(response => {
+      console.log(response);
+
+      this.setState({
+        itemName: response.data.itemName,
+        completed: response.data.completed,
+        FriendId: response.data.FriendId
+      });
+      console.log(this.state);
+      localStorage.setItem("id", this.state.itemName);
+    });
   };
 
   seeGifts = event => {
