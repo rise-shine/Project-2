@@ -128,7 +128,12 @@ class App extends React.Component {
       isLoggedIn: false
     });
   };
-
+  handleGiftAdd = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
   addGift = event => {
     event.preventDefault();
     console.log("helloOOOO, gift");
@@ -141,7 +146,13 @@ class App extends React.Component {
       friendId: response.data.friendId
     });
     axios
-      .post("/api/friend/create", { name, email, password })
+      .post("/api/friend/create", {
+        userId,
+        giftName,
+        giftDesc,
+        holiday,
+        friendId
+      })
       .then(response => {
         console.log(response);
       });
