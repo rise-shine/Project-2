@@ -111,21 +111,46 @@ function Friends(props) {
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  <button className= "btn btn-success" onClick={e => props.addGift(e)}>Add gift</button>
+                  <button
+                    className="btn btn-success"
+                    onClick={e => props.addGift(e)}
+                  >
+                    Add gift
+                  </button>
                 </a>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a className="dropdown-item" href="/action1" />
                   <form>
-                    <label>
-                      Gifts:
-                      <input placeholder="Gifts" type="text" name="gift" />
-                    </label>
-                    <label>
-                      $:
-                      <input placeholder="Price" type="number" name="price" />
-                    </label>
-                    <br></br>
-                    <button type="button" className="btn btn-success" >submit</button>
+                    <input
+                      className="form-control"
+                      value={props.registerName}
+                      name="gift"
+                      onChange={e => props.handleRegistration(e)}
+                      type="text"
+                      placeholder="Gift Description"
+                    />
+
+                    <input
+                      className="form-control"
+                      value={props.registerName}
+                      name="holiday"
+                      onChange={e => props.handleRegistration(e)}
+                      type="text"
+                      placeholder="Date Needed 1990-01-01"
+                    />
+
+                    <input
+                      className="form-control"
+                      value={props.registerName}
+                      name="comments"
+                      onChange={e => props.handleRegistration(e)}
+                      type="text"
+                      placeholder="comments about the gift"
+                    />
+                    <br />
+                    <button type="button" className="btn btn-success">
+                      submit
+                    </button>
                   </form>
                 </div>
               </li>
