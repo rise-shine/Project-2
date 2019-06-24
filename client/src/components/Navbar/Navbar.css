@@ -82,3 +82,13 @@
     padding-left: 40px;
 }
 
+#welcome{
+    padding-top: 8px;
+    width: 600px;
+}
+
+#logout:hover{
+    transform: scale(1.08); 
+    color:red;
+}
+

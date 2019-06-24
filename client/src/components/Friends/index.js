@@ -1,4 +1,5 @@
 import React from "react";
+import "./friends.css";
 // import { timingSafeEqual } from "crypto";
 // import Card from "../Card/";
 // import Wrapper from "../Wrapper";
