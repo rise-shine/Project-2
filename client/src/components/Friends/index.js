@@ -1,15 +1,11 @@
 import React from "react";
+import FriendCard from "../FriendCard";
 import "./friends.css";
-// import { timingSafeEqual } from "crypto";
-// import Card from "../Card/";
-// import Wrapper from "../Wrapper";
-// import friendInfo from "../Friends/friends.json";
 
 function Friends(props) {
-  // state = {
-  //   friendInfo
-  // };
-  // render() {
+  
+  console.log(props.friendsList);
+
   return (
     <div className="container">
       <div
@@ -84,95 +80,31 @@ function Friends(props) {
         </div>
       </div>
 
-      <div className="card">
-        {/* <div className="img-container">
-      <img alt={props.name} src={props.image} />
+      
+      <div className="name">
 
-    </div> */}
-
-        {props.name && props.dateOfBirth && props.relationship ? (
-          <div className="name">
-            <p>
-              <strong>Name:</strong> {props.name}
-            </p>
-            <p className="drop-gift">
-              <strong>Date of birth:</strong> {props.dateOfBirth}
-            </p>
-            <p className="drop-gift">
-              <strong>Relationship:</strong> {props.relationship}
-            </p>
-            <div className="add-gift-button">
-              {/* ADDING DROP DOWN ... -Halon */}
-              <h6 className="drop-gift">
-                <a
-                  className="card-dropdown-toggle"
-                  href="#"
-                  id="cardDropdown"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  <button
-                    className="btn btn-success"
-                    onClick={e => props.addGift(e)}
-                  >
-                    Add gift
-                  </button>
-                </a>
-                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a className="dropdown-item" href="/action1" />
-                  <form>
-                    <label>
-                      Gifts:
-                      <input placeholder="Gifts" type="text" name="gift" />
-                    </label>
-                    <br></br>
-                    <label>
-                      $:
-                      <input placeholder="Price" type="number" name="price" />
-                    </label>
-                    <br />
-                    <button type="button" className="btn btn-success">
-                      submit
-                    </button>
-                  </form>
-                </div>
-              </h6>
-            </div>
-            {/* ADDING DROPDOWN FOR SEE GIFTS ... -Halon */}
-            <div className="see-gifts-dropdown">
-              <h6 className="drop-gift">
-                <a
-                  className="card-dropdown-toggle"
-                  href="#"
-                  id="cardDropdown"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  <button
-                    className="btn btn-success"
-                    onClick={e => props.seeGifts(e)}
-                  >
-                    See all Gifts added
-                  </button>
-                </a>
-                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a className="dropdown-item" href="/action1" />
-                </div>
-              </h6>
-            </div>
-          </div>
-        ) : (
-          <div className="name">
-            <p>
+        {props.friendsList.length > 0 
+        ?
+        
+        props.friendsList.map(friend => (
+          <FriendCard 
+          key={friend.id}
+          name={friend.name}
+          dateOfBirth={friend.dateOfBirth}
+          relationship={friend.relationship}
+          addGift={props.addGift}
+          seeGifts={props.seeGifts}
+          />
+        ))
+        :
+        <p>
               It looks like you haven't added any friends yet. You can start by
               clicking the button below!
             </p>
+        }
+            
           </div>
-        )}
+  
 
         <button
           type="button"
@@ -184,7 +116,6 @@ function Friends(props) {
           Add new friend
         </button>
       </div>
-    </div>
   );
 }
 

@@ -16,7 +16,10 @@ function Navbar(props) {
         <li className="nav-item active" id="welcome">Welcome, {props.userName}!</li>
         
         <li className="nav-item active">
-          <a className="nav-link" id="logout" href="/" onClick={(e) =>props.logOut(e)}>Logout</a>
+          <a className="nav-link" id="logout" href="/" onClick={(e) => {
+            props.history.push("/")
+            props.logOut(e)
+            }}>Logout</a>
         </li>
       </ul> 
       
@@ -31,23 +34,6 @@ function Navbar(props) {
       </ul> 
       
 </div>}
-      {/* <li className="nav-item">
-        <a className="nav-link" href="#"></a>
-      </li> */}
-      {/* <ul>
-      <li className="nav-item dropdown">
-        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-         My Lists
-        </a>
-        <div className="dropdown-menu" id="dropdownId" aria-labelledby="navbarDropdown">
-          <a className="dropdown-item" href="/gifts">Gift List</a>
-          <a className="dropdown-item" href="/friends">Friend List</a>
-          <div className="dropdown-divider"></div>
-          <a className="dropdown-item" href="/about">About Us</a>
-        </div>
-      </li>
-    </ul>
-  </div> */}
 </nav>
   )
 }

@@ -17,17 +17,17 @@ router.get("/list/:id", function(req, res) {
     
     .then(function(response) { 
 
-        response.map(friend => {
+        // response.map(friend => {
 
-          friendObj = {
-            friendID: friend.dataValues.id,
-            friendName: friend.dataValues.name,
-            friendDOB: friend.dataValues.dateOfBirth,
-            friendRelationship: friend.dataValues.relationship
-          }
-          console.log(friendObj);
-        });
-    // res.json(response);
+        //   friendObj = {
+        //     friendID: friend.dataValues.id,
+        //     friendName: friend.dataValues.name,
+        //     friendDOB: friend.dataValues.dateOfBirth,
+        //     friendRelationship: friend.dataValues.relationship
+        //   }
+        //   console.log(friendObj);
+        // });
+    res.json(response);
     }).catch(err => {
       console.log(err);
       
