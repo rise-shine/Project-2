@@ -124,8 +124,8 @@ function Friends(props) {
                     <input
                       className="form-control"
                       value={props.registerName}
-                      name="gift"
-                      onChange={e => props.handleRegistration(e)}
+                      name="giftName"
+                      onChange={e => props.handleGiftAdd(e)}
                       type="text"
                       placeholder="Gift Description"
                     />
@@ -134,7 +134,7 @@ function Friends(props) {
                       className="form-control"
                       value={props.registerName}
                       name="holiday"
-                      onChange={e => props.handleRegistration(e)}
+                      onChange={e => props.handleGiftAdd(e)}
                       type="text"
                       placeholder="Date Needed 1990-01-01"
                     />
@@ -142,8 +142,8 @@ function Friends(props) {
                     <input
                       className="form-control"
                       value={props.registerName}
-                      name="comments"
-                      onChange={e => props.handleRegistration(e)}
+                      name="giftDesc"
+                      onChange={e => props.handleGiftAdd(e)}
                       type="text"
                       placeholder="comments about the gift"
                     />
