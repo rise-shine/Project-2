@@ -40,7 +40,7 @@ function Friends(props) {
                   className="form-control"
                   value={props.friendName}
                   name="friendName"
-                  onChange={e => props.handleFriendAdd(e)}
+                  onChange={e => props.handleInputChange(e)}
                   type="text"
                   placeholder="Friend's Name"
                 />
@@ -48,15 +48,15 @@ function Friends(props) {
                   className="form-control"
                   value={props.friendDOB}
                   name="friendDOB"
-                  onChange={e => props.handleFriendAdd(e)}
+                  onChange={e => props.handleInputChange(e)}
                   type="text"
                   placeholder="1990-01-01"
                 />
                 <input
                   className="form-control"
-                  value={props.registerPassword}
+                  value={props.friendRelationship}
                   name="friendRelationship"
-                  onChange={e => props.handleFriendAdd(e)}
+                  onChange={e => props.handleInputChange(e)}
                   type="text"
                   placeholder="Relationship"
                 />

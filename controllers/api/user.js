@@ -5,8 +5,22 @@ router.get("/", function(req, res) {
   console.log("Hi");
 });
 
+router.get("/welcome", function(req, res) {
+  db.User.findAll({})
+    
+    .then(function(response) {
+
+    res.json(response); 
+        
+    }).catch(err => {
+      console.log(err);
+      
+    });
+
+})
+
 // After the user signs in, the code will read the DB. Then, it will render the friends in the welcome page
-router.get("/welcome/:email", function(req, res) {
+router.get("/welcome/:email/:password", function(req, res) {
   
   db.User.findOne({
 
@@ -16,12 +30,16 @@ router.get("/welcome/:email", function(req, res) {
   })
     
     .then(function(response) {
-       
-        console.log(response.dataValues.id, response.dataValues.name, response.dataValues.email);
+
+    if (req.params.password === response.dataValues.password) {
+
+      console.log(response.dataValues.id, response.dataValues.name, response.dataValues.email);
         res.json({
           userID: response.dataValues.id,
           name: response.dataValues.name
         });
+
+    }   
         
     }).catch(err => {
       console.log(err);
