@@ -1,4 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Mali&display=swap');
+@keyframes fadein_left {
+    from {
+      left: 0;
+    }
+    to {
+      left: 100%;
+    }
+  }
 
 #navbarSupportedContent{
     background-color: rgb(255, 238, 0);
