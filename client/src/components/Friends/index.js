@@ -111,19 +111,14 @@ function Friends(props) {
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  <button
-                    className="btn btn-success"
-                    onClick={e => props.addGift(e)}
-                  >
-                    Add gift
-                  </button>
+                  <button className="btn btn-success">Add gift</button>
                 </a>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a className="dropdown-item" href="/action1" />
                   <form>
                     <input
                       className="form-control"
-                      value={props.registerName}
+                      value={props.giftName}
                       name="giftName"
                       onChange={e => props.handleGiftAdd(e)}
                       type="text"
@@ -132,7 +127,7 @@ function Friends(props) {
 
                     <input
                       className="form-control"
-                      value={props.registerName}
+                      value={props.holiday}
                       name="holiday"
                       onChange={e => props.handleGiftAdd(e)}
                       type="text"
@@ -141,14 +136,18 @@ function Friends(props) {
 
                     <input
                       className="form-control"
-                      value={props.registerName}
+                      value={props.giftDesc}
                       name="giftDesc"
                       onChange={e => props.handleGiftAdd(e)}
                       type="text"
                       placeholder="comments about the gift"
                     />
                     <br />
-                    <button type="button" className="btn btn-success">
+                    <button
+                      type="button"
+                      className="btn btn-success"
+                      onClick={e => props.addGift(e)}
+                    >
                       submit
                     </button>
                   </form>

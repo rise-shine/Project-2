@@ -26,6 +26,7 @@ class App extends React.Component {
     this.logOut = this.logOut.bind(this);
     this.handleFriendAdd = this.handleFriendAdd.bind(this);
     this.addFriend = this.addFriend.bind(this);
+    this.handleGiftAdd = this.handleGiftAdd.bind(this);
 
     this.state = {
       cardInfo,
@@ -38,7 +39,10 @@ class App extends React.Component {
       isLoggedIn: false,
       friendName: "",
       friendDOB: "",
-      friendRelationship: ""
+      friendRelationship: "",
+      giftName: "",
+      holiday: "",
+      giftDesc: ""
     };
   }
 
@@ -137,24 +141,24 @@ class App extends React.Component {
   addGift = event => {
     event.preventDefault();
     console.log("helloOOOO, gift");
-    const { userId, giftName, giftDesc, holiday, friendId } = this.state;
-    this.setState({
-      userId: response.data.userId,
-      giftName: response.data.giftName,
-      giftDesc: response.data.giftDesc,
-      holiday: response.data.holiday,
-      friendId: response.data.friendId
-    });
+    const { userId, giftName, giftDesc, holiday, friendName } = this.state;
+
     axios
       .post("/api/friend/create", {
         userId,
         giftName,
         giftDesc,
         holiday,
-        friendId
+        friendName
       })
       .then(response => {
         console.log(response);
+
+        this.setState({
+          giftName: response.data.giftName,
+          giftDesc: response.data.giftDesc,
+          holiday: response.data.holiday
+        });
       });
   };
 
@@ -177,6 +181,7 @@ class App extends React.Component {
 
   render() {
     const {
+      handleGiftAdd,
       handleRegistration,
       handleInputChange,
       handleSignUp,
@@ -205,14 +210,18 @@ class App extends React.Component {
                       name={friend.name}
                       dateOfBirth={friend.dateOfBirth}
                       relationship={friend.relationship}
-                      addGift={addGift}
                       addFriend={addFriend}
                       seeGifts={seeGifts}
                       handleFriendAdd={handleFriendAdd}
+                      addGift={addGift}
+                      handleGiftAdd={handleGiftAdd}
+                      giftName={this.state.giftName}
+                      giftDesc={this.state.giftDesc}
+                      holiday={this.state.holiday}
                     />
                   ))
                 ) : (
-                  <Friends addGift={addGift} />
+                  <Friends />
                 )}
               </Route>
             ) : (
