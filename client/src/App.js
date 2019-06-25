@@ -99,6 +99,8 @@ class App extends React.Component {
           isLoggedIn: true
         });
 
+        console.log(this.state.friends);
+
       });
         
         
@@ -147,12 +149,12 @@ class App extends React.Component {
 
     const id = localStorage.getItem("id");
 
-    const { friendName, friendDOB, friendRelationship } = this.state;
+    const { name, friendDOB, friendRelationship } = this.state;
 
-    axios.post("/api/friend/create/" + id, { friendName, friendDOB, friendRelationship }).then(response => {
+    axios.post("/api/friend/create/" + id, { name, friendDOB, friendRelationship }).then(response => {
 
       const newFriend = [{
-        friendName: response.data.friendName,
+        name: response.data.name,
         dateOfBirth: response.data.friendDOB,
         relationship: response.data.friendRelationship,
         id: response.data.friendID

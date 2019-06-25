@@ -35,8 +35,8 @@ function Friends(props) {
               <form className="form-group">
                 <input
                   className="form-control"
-                  value={props.friendName}
-                  name="friendName"
+                  value={props.name}
+                  name="name"
                   onChange={e => props.handleInputChange(e)}
                   type="text"
                   placeholder="Friend's Name"

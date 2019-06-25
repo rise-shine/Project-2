@@ -16,17 +16,6 @@ router.get("/list/:id", function(req, res) {
   })
     
     .then(function(response) { 
-
-        // response.map(friend => {
-
-        //   friendObj = {
-        //     friendID: friend.dataValues.id,
-        //     friendName: friend.dataValues.name,
-        //     friendDOB: friend.dataValues.dateOfBirth,
-        //     friendRelationship: friend.dataValues.relationship
-        //   }
-        //   console.log(friendObj);
-        // });
     res.json(response);
     }).catch(err => {
       console.log(err);
@@ -36,13 +25,13 @@ router.get("/list/:id", function(req, res) {
 
 // post route to create burgers
 router.post("/create/:id", function(req, res) {
-  const { friendName, friendDOB, friendRelationship } = req.body;
+  const { name, friendDOB, friendRelationship } = req.body;
   const id = req.params.id;
 
-  console.log(friendName, friendDOB, friendRelationship, id);
+  console.log(name, friendDOB, friendRelationship, id);
   
   db.Friend.create({
-    name: friendName,
+    name: name,
     dateOfBirth: friendDOB,
     relationship: friendRelationship,
     UserId: id
@@ -51,7 +40,7 @@ router.post("/create/:id", function(req, res) {
     .then(function(response) {
 
       res.json({
-        friendName: response.dataValues.name,
+        name: response.dataValues.name,
         friendDOB: response.dataValues.dateOfBirth,
         friendRelationship: response.dataValues.relationship,
         friendID: response.dataValues.id
