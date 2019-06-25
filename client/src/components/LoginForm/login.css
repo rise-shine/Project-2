@@ -1,12 +1,12 @@
 
-
 @import url('https://fonts.googleapis.com/css?family=Mali&display=swap');
 
 #containerId {
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/4/42/Looseleaf_Legal_Pad_Background.svg") no-repeat center center fixed;
+  padding-top: 70px;
+  align-content: center;
   margin: 0px;
-  padding: 0px;
-  height: 400px;
-  background-image: url("https://upload.wikimedia.org/wikipedia/commons/4/42/Looseleaf_Legal_Pad_Background.svg");
+  height: 800px;
 }
 
 #form {
@@ -63,3 +63,4 @@
 #picture {
   height: 150px;
 }
+

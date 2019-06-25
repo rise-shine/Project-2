@@ -85,14 +85,6 @@ function LoginForm(props) {
           </div>
         </div>
       </div>
-
-      <div className="row" id="picture">
-        <img
-          src={require("../../images/legalpad.png")}
-          className="img-fluid"
-          alt="legal pad"
-        />
-      </div>
       <div className="row" id="spacer" />
       <div className="row" id="form">
         <div className="col-sm" />
