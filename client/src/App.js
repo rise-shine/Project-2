@@ -84,10 +84,21 @@ class App extends React.Component {
     axios
       .get("/api/user/welcome/" + email + "/" + password)
       .then(response => {
-        if (response.data.userID) {
+        console.log("axios", response);
+        if (response.data.userID === "invalid") {
+          console.log(
+            alert(
+              "This is not a valid userID.  If you do not have an account use the 'create a new account' below"
+            )
+          );
+          this.setState({
+            isLoggedIn: false
+          });
+        } else if (response.data.userID) {
           this.setState({
             userID: response.data.userID,
-            name: response.data.name
+            name: response.data.name,
+            isLoggedIn: true
           });
 
           localStorage.clear();
@@ -99,8 +110,7 @@ class App extends React.Component {
       .then(() => {
         axios.get("api/friend/list/" + this.state.userID).then(response => {
           this.setState({
-            friends: response.data,
-            isLoggedIn: true
+            friends: response.data
           });
         });
       });
@@ -121,20 +131,18 @@ class App extends React.Component {
   };
 
   saveGift = event => {
-
     const friendID = event.target.id;
     const { itemName, comments, price } = this.state;
 
-    axios.post("/api/gift/create/" + friendID, { itemName, comments, price }).then(response => {
-
-      this.setState({
-        itemName: "",
-        comments: "",
-        price: ""
+    axios
+      .post("/api/gift/create/" + friendID, { itemName, comments, price })
+      .then(response => {
+        this.setState({
+          itemName: "",
+          comments: "",
+          price: ""
+        });
       });
-
-    });
-
   };
 
   seeGiftsBought = event => {
