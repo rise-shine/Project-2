@@ -122,7 +122,7 @@ function Friends(props) {
                       name="giftName"
                       onChange={e => props.handleGiftAdd(e)}
                       type="text"
-                      placeholder="Gift Description"
+                      placeholder="Gift Name"
                     />
 
                     <input

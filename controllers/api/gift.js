@@ -1,11 +1,11 @@
 const router = require("express").Router();
 var db = require("../../models");
 
-router.get("/", function(req, res) {
-  console.log("Hi");
+/*router.get("/", function(req, res) {
+  console.log("api Hi");
 });
 
-// After the user signs in, the code will read the DB. Then, it will render the friends in the welcome page
+ After the user signs in, the code will read the DB. Then, it will render the friends in the welcome page
 router.get("/welcome/:email", function(req, res) {
   db.User.findOne({
     where: {
@@ -27,9 +27,8 @@ router.get("/welcome/:email", function(req, res) {
     .catch(err => {
       console.log(err);
     });
-});
+});*/
 
-// post route to create burgers
 router.post("/create", function(req, res) {
   const { userId, giftName, giftDesc, holiday, friendName } = req.body;
 
@@ -39,13 +38,11 @@ router.post("/create", function(req, res) {
     userId: userId,
     itemName: giftName,
     comments: giftDesc,
-    holiday: holiday,
-    completed: false,
-    friendId
+    holiday: holiday
   })
     // pass the result of our call
     .then(function(response) {
-      console.log(response);
+      console.log("api", response);
       /*res.json({
         userID: response.dataValues.id,
         name: response.dataValues.name

@@ -4,7 +4,7 @@ import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import LoginForm from "./components/LoginForm/login";
 import cardInfo from "./components/Card/cardInfo.json";
-import CardName from "./components/Card/CardName";
+//import CardName from "./components/Card/CardName";
 import friends from "./friends.json";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import giftList from "./components/giftList";
@@ -144,7 +144,7 @@ class App extends React.Component {
     const { userId, giftName, giftDesc, holiday, friendName } = this.state;
 
     axios
-      .post("/api/friend/create", {
+      .post("/api/gift/create", {
         userId,
         giftName,
         giftDesc,
@@ -152,7 +152,7 @@ class App extends React.Component {
         friendName
       })
       .then(response => {
-        console.log(response);
+        console.log("axios", response);
 
         this.setState({
           giftName: response.data.giftName,
