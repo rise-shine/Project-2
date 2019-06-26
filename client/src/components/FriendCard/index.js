@@ -33,7 +33,6 @@ function FriendCard(props) {
               <button
                 className="btn btn-success"
                 id="addGiftButtonFC"
-                onClick={() => props.addGift(props.id)}
               >
                 Add gift
               </button>

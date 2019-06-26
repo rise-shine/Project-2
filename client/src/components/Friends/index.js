@@ -101,7 +101,6 @@ function Friends(props) {
               handleInputChange={props.handleInputChange}
               seeGiftsBought={props.seeGiftsBought}
               saveGift={props.saveGift}
-              addGift={props.addGift}
               itemName={props.itemName}
               comments={props.comments}
               price={props.price}
