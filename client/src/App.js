@@ -5,7 +5,9 @@ import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import LoginForm from "./components/LoginForm/login";
 import cardInfo from "./components/Card/cardInfo.json";
+
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
 import giftList from "./components/giftList";
 import axios from "axios";
 import Friends from "./components/Friends";
@@ -26,7 +28,11 @@ class App extends React.Component {
     this.seeGifts = this.seeGifts.bind(this);
     this.logOut = this.logOut.bind(this);
     this.addFriend = this.addFriend.bind(this);
+
+    this.handleGiftAdd = this.handleGiftAdd.bind(this);
+
     this.seeGiftsBought = this.seeGiftsBought.bind(this);
+
 
     this.state = {
       cardInfo,
@@ -37,8 +43,14 @@ class App extends React.Component {
       userID: 0,
       isLoggedIn: false,
       friendName: "",
+      friendDOB: "",
+      friendRelationship: "",
+      giftName: "",
+      holiday: "",
+      giftDesc: "",
       dateOfBirth: "",
       relationship: ""
+
     };
   }
 
@@ -122,24 +134,39 @@ class App extends React.Component {
       isLoggedIn: false
     });
   };
-
+  handleGiftAdd = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
   addGift = event => {
 
-    console.log(event);
-    // event.preventDefault();
-    // const { itemName, completed,FriendId} = this.state;
+    event.preventDefault();
+    console.log("helloOOOO, gift");
+    const { userId, giftName, giftDesc, holiday, friendName } = this.state;
 
-    // axios.post("/api/gifts/create", { itemName, completed,FriendId}).then(response => {
-    //   console.log(response);
+    axios
+      .post("/api/gift/create", {
+        userId,
+        giftName,
+        giftDesc,
+        holiday,
+        friendName
+      })
+      .then(response => {
+        console.log("axios", response);
 
-    //   this.setState({
-    //     itemName: response.data.itemName,
-    //     completed: response.data.completed,
-    //     FriendId: response.data.FriendId
-    //   });
-    //   console.log(this.state);
-    //   localStorage.setItem("id", this.state.itemName);
-    // });
+        this.setState({
+          giftName: response.data.giftName,
+          giftDesc: response.data.giftDesc,
+          holiday: response.data.holiday
+        });
+      });
+
+
+   
+    
   };
 
   seeGiftsBought = event => {
@@ -179,6 +206,9 @@ class App extends React.Component {
 
   render() {
     const {
+      handleGiftAdd,
+      handleRegistration,
+
       handleInputChange,
       handleSignUp,
       handleFormSubmit,
@@ -199,19 +229,43 @@ class App extends React.Component {
             logOut={logOut}
           />
           <Switch>
-            <Route exact path="/" render={props => (
-              <LoginForm
-                {...props}
-                isLoggedIn={this.state.isLoggedIn}
-                registerEmail={this.state.email}
-                registerName={this.state.name}
-                registerPassword={this.state.password}
-                email={this.state.email}
-                password={this.state.password}
-                handleInputChange={handleInputChange}
-                handleSignUp={handleSignUp}
-                handleFormSubmit={handleFormSubmit}
-              />
+
+            {this.state.isLoggedIn ? (
+              <Route to="/friends">
+                {this.state.friends.length > 0 ? (
+                  this.state.friends.map(friend => (
+                    <Friends
+                      name={friend.name}
+                      dateOfBirth={friend.dateOfBirth}
+                      relationship={friend.relationship}
+                      addFriend={addFriend}
+                      seeGifts={seeGifts}
+                      handleFriendAdd={handleFriendAdd}
+                      addGift={addGift}
+                      handleGiftAdd={handleGiftAdd}
+                      giftName={this.state.giftName}
+                      giftDesc={this.state.giftDesc}
+                      holiday={this.state.holiday}
+                    />
+                  ))
+                ) : (
+                  <Friends />
+                )}
+              </Route>
+            ) : (
+              <Route exact path="/">
+                <LoginForm
+                  registerEmail={this.state.email}
+                  registerName={this.state.name}
+                  registerPassword={this.state.password}
+                  email={this.state.email}
+                  password={this.state.password}
+                  handleRegistration={handleRegistration}
+                  handleInputChange={handleInputChange}
+                  handleSignUp={handleSignUp}
+                  handleFormSubmit={handleFormSubmit}
+                />
+              </Route>
             )}
             />
             <Route path="/friends" render={props => (
