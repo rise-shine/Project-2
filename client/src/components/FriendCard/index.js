@@ -71,7 +71,7 @@ function FriendCard(props) {
                 <button
                   type="button"
                   className="btn btn-success"
-                  onClick={e => props.saveGift(e)}
+                  onClick={e => props.saveGift(props.id)}
                 >
                   submit
                 </button>

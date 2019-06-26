@@ -150,13 +150,14 @@ class App extends React.Component {
         });
       });
   };
-  saveGift = event => {
+  saveGift = id => {
     let user = this.state.userID;
+
     console.log("attempting gift save");
     const { giftName, giftDesc, holiday } = this.state;
-    console.log(user, giftName, giftDesc, holiday);
+    console.log(user, giftName, giftDesc, holiday, id);
     axios
-      .post("/api/gift/create/" + this.state.friendID, {
+      .post("/api/gift/create/" + id, {
         user,
         giftName,
         giftDesc,
