@@ -8,6 +8,15 @@ function Friends(props) {
 
   return (
     <div className="container">
+       <button
+          type="button"
+          className="btn btn-success"
+          id="addNewFriendButton"
+          data-toggle="modal"
+          data-target="#exampleModal"
+        >
+          Add new friend
+        </button>
       <div
         className="modal fade"
         id="exampleModal"
@@ -99,24 +108,17 @@ function Friends(props) {
           />
         ))
         :
-        <p>
+        <p><span id="boilerplate">
               It looks like you haven't added any friends yet. You can start by
-              clicking the button below!
+              clicking the button above!
+              </span>
             </p>
         }
             
           </div>
   
 
-        <button
-          type="button"
-          className="btn btn-success"
-          id="addNewFriendButton"
-          data-toggle="modal"
-          data-target="#exampleModal"
-        >
-          Add new friend
-        </button>
+       
       </div>
   );
 }

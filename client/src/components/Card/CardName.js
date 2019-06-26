@@ -2,7 +2,6 @@ import React from "react";
 import CardItem from "./CardItem";
 import cardInfo from "./cardInfo.json";
 
-
 class CardName extends React.Component {
   constructor(props) {
     super(props);

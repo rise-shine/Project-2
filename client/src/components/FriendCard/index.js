@@ -3,8 +3,13 @@ import "./FriendCard.css";
 
 function FriendCard(props) {
 
+const styles = {
+  marginBottom: '10px',
+  width: '350px',
+};
+
     return (
-        <div className="card">
+        <div className="card" style={styles}>
 
           <div className="name">
             <p>
