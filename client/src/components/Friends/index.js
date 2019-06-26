@@ -3,20 +3,19 @@ import FriendCard from "../FriendCard";
 import "./friends.css";
 
 function Friends(props) {
-  
   console.log(props.friendsList);
 
   return (
     <div className="container">
-       <button
-          type="button"
-          className="btn btn-success"
-          id="addNewFriendButton"
-          data-toggle="modal"
-          data-target="#exampleModal"
-        >
-          Add new friend
-        </button>
+      <button
+        type="button"
+        className="btn btn-success"
+        id="addNewFriendButton"
+        data-toggle="modal"
+        data-target="#exampleModal"
+      >
+        Add new friend
+      </button>
       <div
         className="modal fade"
         id="exampleModal"
@@ -89,42 +88,34 @@ function Friends(props) {
         </div>
       </div>
 
-      
       <div className="name">
-
-        {props.friendsList.length > 0 
-        ?
-        
-        props.friendsList.map(friend => (
-          <FriendCard 
-          key={friend.id}
-          id={friend.id}
-          name={friend.name}
-          dateOfBirth={friend.dateOfBirth}
-          relationship={friend.relationship}
-          addGift={props.addGift}
-          seeGifts={props.seeGifts}
-          handleInputChange={props.handleInputChange}
-          seeGiftsBought={props.seeGiftsBought}
-          saveGift={props.saveGift}
-          itemName={props.itemName}
-          comments={props.comments}
-          price={props.price}
-          />
-        ))
-        :
-        <div id="noFriends"><span id="boilerplate">
+        {props.friendsList.length > 0 ? (
+          props.friendsList.map(friend => (
+            <FriendCard
+              key={friend.id}
+              id={friend.id}
+              name={friend.name}
+              dateOfBirth={friend.dateOfBirth}
+              relationship={friend.relationship}
+              seeGifts={props.seeGifts}
+              handleInputChange={props.handleInputChange}
+              seeGiftsBought={props.seeGiftsBought}
+              saveGift={props.saveGift}
+              holiday={props.holiday}
+              giftName={props.giftName}
+              comments={props.comments}
+            />
+          ))
+        ) : (
+          <div id="noFriends">
+            <span id="boilerplate">
               It looks like you haven't added any friends yet. You can start by
               clicking the button above!
-              </span>
-            </div>
-        }
-            
+            </span>
           </div>
-  
-
-       
+        )}
       </div>
+    </div>
   );
 }
 

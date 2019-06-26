@@ -1,21 +1,25 @@
 module.exports = function(sequelize, DataTypes) {
   var Gift = sequelize.define("Gift", {
     itemName: {
-        type: DataTypes.STRING,
-        allowNull: false
-    }, 
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     comments: {
-        type: DataTypes.TEXT,
-        allowNull: true
-    }, 
-    price: {
-        type: DataTypes.FLOAT,
-        allowNull: true
+      type: DataTypes.TEXT,
+      allowNull: true
+    },
+    holiday: {
+      type: DataTypes.STRING,
+      allowNull: true
     },
     completed: {
-        type: DataTypes.BOOLEAN,
-        allowNull: true,
-        defaultValue: false
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+      defaultValue: false
+    },
+    FriendId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
   });
 
@@ -28,7 +32,6 @@ module.exports = function(sequelize, DataTypes) {
     });
 
     models.Friend.hasMany(models.Gift);
-    
   };
 
   return Gift;
