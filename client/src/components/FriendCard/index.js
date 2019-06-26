@@ -8,6 +8,10 @@ const styles = {
   width: '350px',
 };
 
+const stylesMargin = {
+  marginBotton: '10px',
+};
+
     return (
         <div className="card" style={styles}>
 
@@ -81,6 +85,7 @@ const styles = {
                   <button
                     className="btn btn-success"
                     id="seeAllGiftsButton"
+                    style={stylesMargin}
                     onClick={(e) => props.seeGifts(e)}
                   >
                     See all gifts added
@@ -88,7 +93,7 @@ const styles = {
 
                   <button
                     className="btn btn-success"
-                    id="seeAllGiftsButton"
+                    id="seeAllGiftsBought"
                     onClick={(e) => props.seeGiftsBought(e)}
                   >
                     See all gifts bought

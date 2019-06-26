@@ -29,3 +29,19 @@
     background-color: rgb(255, 217, 0);
     font-weight: bold;
 }
+
+#seeAllGiftsBought{
+    width: 180px;
+    align-content: center;
+    background-color: orange;
+    border-color: orangered;
+    color: red;
+    font-family: 'Mali', cursive;
+    margin-top: 10px;
+}
+  
+#seeAllGiftsBought:hover {
+    transform: scale(1.08); 
+    background-color: rgb(255, 217, 0);
+    font-weight: bold;
+}
