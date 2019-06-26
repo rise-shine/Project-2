@@ -42,13 +42,13 @@ class App extends React.Component {
       dateOfBirth: "",
       relationship: "",
       friendID: 0,
-      itemName: "",
-      comments: "", 
-      price: ""
+      holiday: "",
+      giftName: "",
+      comments: ""
     };
   }
 
-//Function that will handle input changes
+  //Function that will handle input changes
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
@@ -63,7 +63,6 @@ class App extends React.Component {
     const { name, email, password } = this.state;
 
     axios.post("/api/user/create", { name, email, password }).then(response => {
-    
       this.setState({
         name: response.data.name,
         email: response.data.email,
@@ -84,33 +83,29 @@ class App extends React.Component {
 
     const { email, password } = this.state;
 
-    axios.get("/api/user/welcome/" + email + "/" + password).then(response => {
+    axios
+      .get("/api/user/welcome/" + email + "/" + password)
+      .then(response => {
+        if (response.data.userID) {
+          this.setState({
+            userID: response.data.userID,
+            name: response.data.name
+          });
 
-      if (response.data.userID) {
-        this.setState({
-          userID: response.data.userID,
-          name: response.data.name
+          localStorage.clear();
+          localStorage.setItem("id", this.state.userID);
+        } else {
+          alert("Your password is incorrect.");
+        }
+      })
+      .then(() => {
+        axios.get("api/friend/list/" + this.state.userID).then(response => {
+          this.setState({
+            friends: response.data,
+            isLoggedIn: true
+          });
         });
-
-        localStorage.clear();
-        localStorage.setItem("id", this.state.userID);
-      } else {
-        alert("Your password is incorrect.")
-      }
-    }).then(() => {
-
-      axios.get("api/friend/list/" + this.state.userID).then(response => {
-
-        this.setState({
-          friends: response.data,
-          isLoggedIn: true
-        });
-
       });
-        
-        
-    });
-
   };
 
   //Function that will handle sign out
@@ -128,65 +123,90 @@ class App extends React.Component {
   };
 
   addGift = id => {
+    console.log(id);
+    let user = this.state.userID;
+    let friendID = this.setState[{ friendID: id }];
+    //event.preventDefault();
+    console.log("helloOOOO, gift");
+    const { giftName, giftDesc, holiday } = this.state;
 
-    this.setState({
-      friendID: id
-    });
+    axios
+      .post("/api/gift/create/", {
+        user,
+        giftName,
+        giftDesc,
+        holiday,
+        friendID
+      })
+      .then(response => {
+        console.log("axios respnose", response);
+
+        this.setState({
+          userID: response.data.user,
+          giftName: response.data.giftName,
+          giftDesc: response.data.giftDesc,
+          holiday: response.data.holiday,
+          friendID: response.data.friendID
+        });
+      });
+  };
+  saveGift = event => {
+    let user = this.state.userID;
+    console.log("attempting gift save");
+    const { giftName, giftDesc, holiday } = this.state;
+    console.log(user, giftName, giftDesc, holiday);
+    axios
+      .post("/api/gift/create/" + this.state.friendID, {
+        user,
+        giftName,
+        giftDesc,
+        holiday
+      })
+      .then(response => {
+        console.log("axios", response);
+        this.setState({
+          friendID: 0
+        });
+      });
   };
 
-  saveGift = event => {
-
-    const { itemName, comments, price } = this.state;
-
-    axios.post("/api/gift/create/" + this.state.friendID, { itemName, comments, price }).then(response => {
-
-      this.setState({
-        friendID: 0
-      });
-
-    });
-
-  }
-
   seeGiftsBought = event => {
-    console.log(event)
-  }
+    console.log(event);
+  };
 
   seeGifts = id => {
     axios.get("/api/gift/list/" + id).then(response => {
-
       this.setState({
         gifts: [response.data]
-      })
+      });
 
-      console.log(this.state.gifts)
-      
+      console.log(this.state.gifts);
     });
   };
 
   addFriend = event => {
-    
     const id = localStorage.getItem("id");
 
     const { name, friendDOB, friendRelationship } = this.state;
 
-    axios.post("/api/friend/create/" + id, { name, friendDOB, friendRelationship }).then(response => {
+    axios
+      .post("/api/friend/create/" + id, { name, friendDOB, friendRelationship })
+      .then(response => {
+        const newFriend = [
+          {
+            name: response.data.name,
+            dateOfBirth: response.data.friendDOB,
+            relationship: response.data.friendRelationship,
+            id: response.data.friendID
+          }
+        ];
 
-      const newFriend = [{
-        name: response.data.name,
-        dateOfBirth: response.data.friendDOB,
-        relationship: response.data.friendRelationship,
-        id: response.data.friendID
-      }];
-
-      this.setState(prevState => {
-        return{
-          friends: [...prevState.friends, ...newFriend]
-        }
+        this.setState(prevState => {
+          return {
+            friends: [...prevState.friends, ...newFriend]
+          };
+        });
       });
-
-    });
-    
   };
 
   render() {
@@ -197,12 +217,14 @@ class App extends React.Component {
       addGift,
       addFriend,
       logOut,
+      holiday,
+      giftName,
+      comments,
       seeGifts,
       seeGiftsBought,
       saveGift
     } = this;
 
-  
     return (
       <Wrapper>
         <Router>
@@ -212,37 +234,43 @@ class App extends React.Component {
             logOut={logOut}
           />
           <Switch>
-            <Route exact path="/" render={props => (
-              <LoginForm
-                {...props}
-                isLoggedIn={this.state.isLoggedIn}
-                registerEmail={this.state.email}
-                registerName={this.state.name}
-                registerPassword={this.state.password}
-                email={this.state.email}
-                password={this.state.password}
-                handleInputChange={handleInputChange}
-                handleSignUp={handleSignUp}
-                handleFormSubmit={handleFormSubmit}
-                addGift={addGift}
-              />
-            )}
+            <Route
+              exact
+              path="/"
+              render={props => (
+                <LoginForm
+                  {...props}
+                  isLoggedIn={this.state.isLoggedIn}
+                  registerEmail={this.state.email}
+                  registerName={this.state.name}
+                  registerPassword={this.state.password}
+                  email={this.state.email}
+                  password={this.state.password}
+                  handleInputChange={handleInputChange}
+                  handleSignUp={handleSignUp}
+                  handleFormSubmit={handleFormSubmit}
+                  addGift={addGift}
+                />
+              )}
             />
-            <Route path="/friends" render={props => (
-              <Friends 
-                {...props}
-                friendsList={this.state.friends}
-                addGift={addGift}
-                addFriend={addFriend}
-                seeGifts={seeGifts}
-                handleInputChange={handleInputChange}
-                seeGiftsBought={seeGiftsBought}
-                item={this.state.itemName}
-                price={this.state.price}
-                comments={this.state.comments}
-                saveGift={saveGift}
-              />
-            )} />
+            <Route
+              path="/friends"
+              render={props => (
+                <Friends
+                  {...props}
+                  friendsList={this.state.friends}
+                  addGift={addGift}
+                  addFriend={addFriend}
+                  seeGifts={seeGifts}
+                  handleInputChange={handleInputChange}
+                  seeGiftsBought={seeGiftsBought}
+                  holiday={this.state.holiday}
+                  giftName={this.state.giftName}
+                  comments={this.state.comments}
+                  saveGift={saveGift}
+                />
+              )}
+            />
             <Route path="/gifts" component={giftList} />
           </Switch>
         </Router>
