@@ -6,7 +6,7 @@ function Navbar(props) {
         <nav className="navbar navbar-expand-lg" id="navbarId">
   <a className="navbar-brand" id="logo" href="/">Gift Scribe <img id="pencil" alt="Pencil" src= "https://findicons.com/files/icons/897/nova/128/pencil.png"/></a>
   <button className="navbar-toggler" id="menuButton" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span className="navbar-toggler-icon">Menu</span>
+  Menu
   </button>
 
 {props.isLoggedIn ? 

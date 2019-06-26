@@ -1,12 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Mali&display=swap');
-@keyframes fadein_left {
-    from {
-      left: 0;
-    }
-    to {
-      left: 100%;
-    }
-  }
 
 #navbarSupportedContent{
     background-color: rgb(255, 238, 0);
@@ -63,12 +55,21 @@
 }
 
 #menuButton{
-    background-color: pink;
+    background-color:yellow;
     width: 80px;
-    color: red;
+    color: orangered;
+    font-weight: bold;
     text-align: center;
-    padding: 0px;
+    padding-top: 3px;
+    padding-right: 8px;
     margin: 0px;
+    font-family: 'Mali', cursive;
+    border: 1px;
+    border-color: red;
+}
+
+#menuButton:hover{
+    transform: scale(1.08);
 }
 
 #navbarId{

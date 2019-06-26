@@ -108,11 +108,11 @@ function Friends(props) {
           />
         ))
         :
-        <p><span id="boilerplate">
+        <div id="noFriends"><span id="boilerplate">
               It looks like you haven't added any friends yet. You can start by
               clicking the button above!
               </span>
-            </p>
+            </div>
         }
             
           </div>
