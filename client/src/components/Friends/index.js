@@ -104,7 +104,12 @@ function Friends(props) {
           relationship={friend.relationship}
           addGift={props.addGift}
           seeGifts={props.seeGifts}
+          handleInputChange={props.handleInputChange}
           seeGiftsBought={props.seeGiftsBought}
+          saveGift={props.saveGift}
+          itemName={props.itemName}
+          comments={props.comments}
+          price={props.price}
           />
         ))
         :

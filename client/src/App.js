@@ -9,9 +9,9 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import giftList from "./components/giftList";
 import axios from "axios";
 import Friends from "./components/Friends";
-import { createBrowserHistory } from "history";
+// import { createBrowserHistory } from "history";
 
-const history = createBrowserHistory();
+// const history = createBrowserHistory();
 
 //Creating the App class
 class App extends React.Component {
@@ -27,10 +27,12 @@ class App extends React.Component {
     this.logOut = this.logOut.bind(this);
     this.addFriend = this.addFriend.bind(this);
     this.seeGiftsBought = this.seeGiftsBought.bind(this);
+    this.saveGift = this.saveGift.bind(this);
 
     this.state = {
       cardInfo,
       friends: [],
+      gifts: [],
       name: "",
       email: "",
       password: "",
@@ -38,7 +40,11 @@ class App extends React.Component {
       isLoggedIn: false,
       friendName: "",
       dateOfBirth: "",
-      relationship: ""
+      relationship: "",
+      friendID: 0,
+      itemName: "",
+      comments: "", 
+      price: ""
     };
   }
 
@@ -100,8 +106,6 @@ class App extends React.Component {
           isLoggedIn: true
         });
 
-        console.log(this.state.friends);
-
       });
         
         
@@ -123,37 +127,45 @@ class App extends React.Component {
     });
   };
 
-  addGift = event => {
+  addGift = id => {
 
-    console.log(event);
-    // event.preventDefault();
-    // const { itemName, completed,FriendId} = this.state;
-
-    // axios.post("/api/gifts/create", { itemName, completed,FriendId}).then(response => {
-    //   console.log(response);
-
-    //   this.setState({
-    //     itemName: response.data.itemName,
-    //     completed: response.data.completed,
-    //     FriendId: response.data.FriendId
-    //   });
-    //   console.log(this.state);
-    //   localStorage.setItem("id", this.state.itemName);
-    // });
+    this.setState({
+      friendID: id
+    });
   };
+
+  saveGift = event => {
+
+    const { itemName, comments, price } = this.state;
+
+    axios.post("/api/gift/create/" + this.state.friendID, { itemName, comments, price }).then(response => {
+
+      this.setState({
+        friendID: 0
+      });
+
+    });
+
+  }
 
   seeGiftsBought = event => {
     console.log(event)
   }
 
-  seeGifts = event => {
-    event.preventDefault();
-    console.log("hello, gift");
+  seeGifts = id => {
+    axios.get("/api/gift/list/" + id).then(response => {
+
+      this.setState({
+        gifts: [response.data]
+      })
+
+      console.log(this.state.gifts)
+      
+    });
   };
 
   addFriend = event => {
-    event.preventDefault();
-
+    
     const id = localStorage.getItem("id");
 
     const { name, friendDOB, friendRelationship } = this.state;
@@ -186,7 +198,8 @@ class App extends React.Component {
       addFriend,
       logOut,
       seeGifts,
-      seeGiftsBought
+      seeGiftsBought,
+      saveGift
     } = this;
 
   
@@ -211,6 +224,7 @@ class App extends React.Component {
                 handleInputChange={handleInputChange}
                 handleSignUp={handleSignUp}
                 handleFormSubmit={handleFormSubmit}
+                addGift={addGift}
               />
             )}
             />
@@ -223,6 +237,10 @@ class App extends React.Component {
                 seeGifts={seeGifts}
                 handleInputChange={handleInputChange}
                 seeGiftsBought={seeGiftsBought}
+                item={this.state.itemName}
+                price={this.state.price}
+                comments={this.state.comments}
+                saveGift={saveGift}
               />
             )} />
             <Route path="/gifts" component={giftList} />

@@ -36,7 +36,7 @@ const styles = {
                   <button
                     className="btn btn-success"
                     id="addGiftButtonFC"
-                    onClick={e => props.addGift(e)}
+                    onClick={() => props.addGift(props.id)}
                   >
                     Add gift
                   </button>
@@ -46,20 +46,44 @@ const styles = {
                   <form>
                     <label>
                       Gifts:
-                      <input placeholder="Gifts" type="text" name="gift" />
+                      <input 
+                      placeholder="Gift Name" type="text" 
+                      value={props.itemName}
+                      name="itemName" 
+                      onChange={e => props.handleInputChange(e)}
+                      />
                     </label>
                     <br></br>
                     <label>
-                      $:
-                      <input placeholder="Price" type="number" name="price" />
+                      Comments:
+                      <input 
+                      placeholder="Comments" 
+                      type="text"  
+                      value={props.comments}
+                      name="comments"
+                      onChange={e => props.handleInputChange(e)}
+                      />
                     </label>
-                    <div>
-                    <input type="checkbox"/>
+                    <label>
+                      $:
+                      <input 
+                      placeholder="10.00" 
+                      type="number"  
+                      value={props.price}
+                      name="price"
+                      onChange={e => props.handleInputChange(e)}
+                      />
+                    </label>
+                    {/* <div>
+                    <input type="checkbox"
+                    checked={props.completed}
+                    name="completed"
+                    onChange={e => props.handleInputChange(e)}/>
                       <p>Has this been bought?</p>
                     <br />
-                    </div>
+                    </div> */}
                     
-                    <button type="button" className="btn btn-success" id="submitButtonFC">
+                    <button type="button" className="btn btn-success" id="submitButtonFC" onClick={e => props.saveGift(e)}>
                       Submit
                     </button>
                   </form>
@@ -81,7 +105,7 @@ const styles = {
                   <button
                     className="btn btn-success"
                     id="seeAllGiftsButton"
-                    onClick={(e) => props.seeGifts(e)}
+                    onClick={() => props.seeGifts(props.id)}
                   >
                     See all gifts added
                   </button>
