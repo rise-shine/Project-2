@@ -92,6 +92,83 @@ function Friends(props) {
       
       <div className="name">
 
+
+    </div> */}
+
+        {props.name && props.dateOfBirth && props.relationship ? (
+          <div className="name">
+            <li>
+              <strong>Name:</strong> {props.name}
+            </li>
+            <li className="drop-gift">
+              <strong>Date of birth:</strong> {props.dateOfBirth}
+            </li>
+            <li className="drop-gift">
+              <strong>Relationship:</strong> {props.relationship}
+            </li>
+            <div className="add-gift-button">
+              <li className="drop-gift">
+                <a
+                  className="card-dropdown-toggle"
+                  href="#"
+                  id="cardDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <button className="btn btn-success">Add gift</button>
+                </a>
+                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a className="dropdown-item" href="/action1" />
+                  <form>
+                    <input
+                      className="form-control"
+                      value={props.giftName}
+                      name="giftName"
+                      onChange={e => props.handleGiftAdd(e)}
+                      type="text"
+                      placeholder="Gift Name"
+                    />
+
+                    <input
+                      className="form-control"
+                      value={props.holiday}
+                      name="holiday"
+                      onChange={e => props.handleGiftAdd(e)}
+                      type="text"
+                      placeholder="Date Needed 1990-01-01"
+                    />
+
+                    <input
+                      className="form-control"
+                      value={props.giftDesc}
+                      name="giftDesc"
+                      onChange={e => props.handleGiftAdd(e)}
+                      type="text"
+                      placeholder="comments about the gift"
+                    />
+                    <br />
+                    <button
+                      type="button"
+                      className="btn btn-success"
+                      onClick={e => props.addGift(e)}
+                    >
+                      submit
+                    </button>
+                  </form>
+                </div>
+              </li>
+            </div>
+
+            <button onClick={e => props.seeGifts(e)}>
+              See all Gifts added
+            </button>
+          </div>
+        ) : (
+          <div className="name">
+            <p>
+
         {props.friendsList.length > 0 
         ?
         
@@ -108,11 +185,16 @@ function Friends(props) {
           />
         ))
         :
+
         <p><span id="boilerplate">
+
+
+        <div id="noFriends"><span id="boilerplate">
+
               It looks like you haven't added any friends yet. You can start by
               clicking the button above!
               </span>
-            </p>
+            </div>
         }
             
           </div>
