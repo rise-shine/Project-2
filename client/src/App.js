@@ -123,10 +123,17 @@ class App extends React.Component {
     });
   };
 
-  addGift = event => {
+  checkFriend = id => {
+    console.log(id);
+  }
 
-    console.log(event);
+  addGift = id => {
+
     // event.preventDefault();
+
+    
+    console.log(id);
+
     // const { itemName, completed,FriendId} = this.state;
 
     // axios.post("/api/gifts/create", { itemName, completed,FriendId}).then(response => {

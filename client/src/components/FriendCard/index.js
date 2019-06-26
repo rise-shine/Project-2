@@ -36,7 +36,7 @@ const styles = {
                   <button
                     className="btn btn-success"
                     id="addGiftButtonFC"
-                    onClick={e => props.addGift(e)}
+                    onClick={() => props.addGift(props.id)}
                   >
                     Add gift
                   </button>
