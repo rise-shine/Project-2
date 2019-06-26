@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css?family=Mali&display=swap');
+
+.container {
+    
+    padding-top: 70px;
+    align-content: center;
+    margin: 0px;
+    height: 1000px;
+}
+
+#addNewFriendButton{
+    width: 180px;
+    align-content: center;
+    background-color: rgb(6, 202, 65);
+    border-color: orangered;
+    color: rgb(77, 74, 74);
+    margin: auto;
+    font-family: 'Mali', cursive;
+    display: block;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+  
+#addNewFriendButton:hover {
+    transform: scale(1.08); 
+    background-color: rgb(0, 255, 42);
+    font-weight: bold;
+}
+
+.card{
+    margin: auto;
+    width: 50%;
+    background-color: rgb(255, 238, 0);
+    font-family: 'Mali', cursive;
+    color: orangered;
+    padding: 10px;
+    border-color: red;
+}
+
+.name{
+    text-align: center;
+}
+
+#boilerplate{
+    font-family: 'Mali', cursive;
+    color: orangered;
+    font-weight: bold;
+}

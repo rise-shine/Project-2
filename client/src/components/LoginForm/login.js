@@ -2,7 +2,15 @@ import React from "react";
 import "./login.css";
 
 function LoginForm(props) {
-  console.log(props);
+  
+
+  console.log(props.isLoggedIn);
+  if (props.isLoggedIn) {
+    props.history.push("/friends");
+  }
+  
+  
+
   return (
     <div className="container" id="containerId">
       <div
@@ -35,7 +43,7 @@ function LoginForm(props) {
                   className="form-control"
                   value={props.registerName}
                   name="name"
-                  onChange={e => props.handleRegistration(e)}
+                  onChange={e => props.handleInputChange(e)}
                   type="text"
                   placeholder="Full Name"
                 />
@@ -43,7 +51,7 @@ function LoginForm(props) {
                   className="form-control"
                   value={props.registerEmail}
                   name="email"
-                  onChange={e => props.handleRegistration(e)}
+                  onChange={e => props.handleInputChange(e)}
                   type="email"
                   placeholder="Email Address"
                 />
@@ -51,7 +59,7 @@ function LoginForm(props) {
                   className="form-control"
                   value={props.registerPassword}
                   name="password"
-                  onChange={e => props.handleRegistration(e)}
+                  onChange={e => props.handleInputChange(e)}
                   type="password"
                   placeholder="Password"
                 />
@@ -76,14 +84,6 @@ function LoginForm(props) {
             </div>
           </div>
         </div>
-      </div>
-
-      <div className="row" id="picture">
-        <img
-          src={require("../../images/legalpad.png")}
-          className="img-fluid"
-          alt="legal pad"
-        />
       </div>
       <div className="row" id="spacer" />
       <div className="row" id="form">

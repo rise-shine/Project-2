@@ -1,16 +1,22 @@
 import React from "react";
-// import { timingSafeEqual } from "crypto";
-// import Card from "../Card/";
-// import Wrapper from "../Wrapper";
-// import friendInfo from "../Friends/friends.json";
+import FriendCard from "../FriendCard";
+import "./friends.css";
 
 function Friends(props) {
-  // state = {
-  //   friendInfo
-  // };
-  // render() {
+  
+  console.log(props.friendsList);
+
   return (
     <div className="container">
+       <button
+          type="button"
+          className="btn btn-success"
+          id="addNewFriendButton"
+          data-toggle="modal"
+          data-target="#exampleModal"
+        >
+          Add new friend
+        </button>
       <div
         className="modal fade"
         id="exampleModal"
@@ -38,9 +44,9 @@ function Friends(props) {
               <form className="form-group">
                 <input
                   className="form-control"
-                  value={props.friendName}
-                  name="friendName"
-                  onChange={e => props.handleFriendAdd(e)}
+                  value={props.name}
+                  name="name"
+                  onChange={e => props.handleInputChange(e)}
                   type="text"
                   placeholder="Friend's Name"
                 />
@@ -48,15 +54,15 @@ function Friends(props) {
                   className="form-control"
                   value={props.friendDOB}
                   name="friendDOB"
-                  onChange={e => props.handleFriendAdd(e)}
+                  onChange={e => props.handleInputChange(e)}
                   type="text"
                   placeholder="1990-01-01"
                 />
                 <input
                   className="form-control"
-                  value={props.registerPassword}
+                  value={props.friendRelationship}
                   name="friendRelationship"
-                  onChange={e => props.handleFriendAdd(e)}
+                  onChange={e => props.handleInputChange(e)}
                   type="text"
                   placeholder="Relationship"
                 />
@@ -83,9 +89,9 @@ function Friends(props) {
         </div>
       </div>
 
-      <div className="card">
-        {/* <div className="img-container">
-      <img alt={props.name} src={props.image} />
+      
+      <div className="name">
+
 
     </div> */}
 
@@ -162,23 +168,36 @@ function Friends(props) {
         ) : (
           <div className="name">
             <p>
-              It looks like you haven't added any friends yet. You can start by
-              clicking the button below!
-            </p>
-          </div>
-        )}
 
-        <button
-          type="button"
-          className="btn btn-success"
-          id="addNewFriendButton"
-          data-toggle="modal"
-          data-target="#exampleModal"
-        >
-          Add new friend
-        </button>
+        {props.friendsList.length > 0 
+        ?
+        
+        props.friendsList.map(friend => (
+          <FriendCard 
+          key={friend.id}
+          id={friend.id}
+          name={friend.name}
+          dateOfBirth={friend.dateOfBirth}
+          relationship={friend.relationship}
+          addGift={props.addGift}
+          seeGifts={props.seeGifts}
+          seeGiftsBought={props.seeGiftsBought}
+          />
+        ))
+        :
+        <p><span id="boilerplate">
+
+              It looks like you haven't added any friends yet. You can start by
+              clicking the button above!
+              </span>
+            </p>
+        }
+            
+          </div>
+  
+
+       
       </div>
-    </div>
   );
 }
 

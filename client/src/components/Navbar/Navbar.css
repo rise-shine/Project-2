@@ -1,4 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Mali&display=swap');
+@keyframes fadein_left {
+    from {
+      left: 0;
+    }
+    to {
+      left: 100%;
+    }
+  }
 
 #navbarSupportedContent{
     background-color: rgb(255, 238, 0);
@@ -24,6 +32,10 @@
     font-weight: bold;
     color: orangered;
     font-size: 25px;
+    background-image: url("http://gauthiersgreenpower.ca/gallery_gen/9b34f5a40d15d224783999e4a8665a47_anim.gif");
+    color:transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
 }
 
 #dropdownId{
@@ -80,5 +92,15 @@
     padding-top: 0px;
     padding-bottom: 0px;
     padding-left: 40px;
+}
+
+#welcome{
+    padding-top: 8px;
+    width: 600px;
+}
+
+#logout:hover{
+    transform: scale(1.08); 
+    color:red;
 }
 
