@@ -8,8 +8,8 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.TEXT,
       allowNull: true
     },
-    holiday: {
-      type: DataTypes.STRING,
+    price: {
+      type: DataTypes.FLOAT,
       allowNull: true
     },
     completed: {

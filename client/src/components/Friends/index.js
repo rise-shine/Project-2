@@ -101,9 +101,10 @@ function Friends(props) {
               handleInputChange={props.handleInputChange}
               seeGiftsBought={props.seeGiftsBought}
               saveGift={props.saveGift}
-              holiday={props.holiday}
-              giftName={props.giftName}
+              addGift={props.addGift}
+              itemName={props.itemName}
               comments={props.comments}
+              price={props.price}
             />
           ))
         ) : (

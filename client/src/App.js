@@ -42,8 +42,8 @@ class App extends React.Component {
       dateOfBirth: "",
       relationship: "",
       friendID: 0,
-      holiday: "",
-      giftName: "",
+      price: "",
+      itemName: "",
       comments: ""
     };
   }
@@ -124,51 +124,23 @@ class App extends React.Component {
 
   addGift = id => {
     console.log(id);
-    let user = this.state.userID;
-    let friendID = this.setState[{ friendID: id }];
-    //event.preventDefault();
-    console.log("helloOOOO, gift");
-    const { giftName, giftDesc, holiday } = this.state;
-
-    axios
-      .post("/api/gift/create/", {
-        user,
-        giftName,
-        giftDesc,
-        holiday,
-        friendID
-      })
-      .then(response => {
-        console.log("axios respnose", response);
-
-        this.setState({
-          userID: response.data.user,
-          giftName: response.data.giftName,
-          giftDesc: response.data.giftDesc,
-          holiday: response.data.holiday,
-          friendID: response.data.friendID
-        });
-      });
+    this.setState({
+      friendID: id
+    });
+    
   };
-  saveGift = id => {
-    let user = this.state.userID;
+  saveGift = event => {
 
-    console.log("attempting gift save");
-    const { giftName, giftDesc, holiday } = this.state;
-    console.log(user, giftName, giftDesc, holiday, id);
-    axios
-      .post("/api/gift/create/" + id, {
-        user,
-        giftName,
-        giftDesc,
-        holiday
-      })
-      .then(response => {
-        console.log("axios", response);
-        this.setState({
-          friendID: 0
-        });
+    const { itemName, comments, price } = this.state;
+
+    axios.post("/api/gift/create/" + this.state.friendID, { itemName, comments, price }).then(response => {
+
+      this.setState({
+        friendID: 0
       });
+
+    });
+
   };
 
   seeGiftsBought = event => {
@@ -218,9 +190,6 @@ class App extends React.Component {
       addGift,
       addFriend,
       logOut,
-      holiday,
-      giftName,
-      comments,
       seeGifts,
       seeGiftsBought,
       saveGift
@@ -265,8 +234,8 @@ class App extends React.Component {
                   seeGifts={seeGifts}
                   handleInputChange={handleInputChange}
                   seeGiftsBought={seeGiftsBought}
-                  holiday={this.state.holiday}
-                  giftName={this.state.giftName}
+                  itemName={this.state.itemName}
+                  price={this.state.price}
                   comments={this.state.comments}
                   saveGift={saveGift}
                 />
