@@ -89,11 +89,13 @@ function Friends(props) {
         props.friendsList.map(friend => (
           <FriendCard 
           key={friend.id}
+          id={friend.id}
           name={friend.name}
           dateOfBirth={friend.dateOfBirth}
           relationship={friend.relationship}
           addGift={props.addGift}
           seeGifts={props.seeGifts}
+          seeGiftsBought={props.seeGiftsBought}
           />
         ))
         :

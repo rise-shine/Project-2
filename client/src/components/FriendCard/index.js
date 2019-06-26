@@ -48,7 +48,12 @@ function FriendCard(props) {
                       $:
                       <input placeholder="Price" type="number" name="price" />
                     </label>
+                    <div>
+                    <input type="checkbox"/>
+                      <p>Has this been bought?</p>
                     <br />
+                    </div>
+                    
                     <button type="button" className="btn btn-success" id="submitButtonFC">
                       Submit
                     </button>
@@ -71,9 +76,17 @@ function FriendCard(props) {
                   <button
                     className="btn btn-success"
                     id="seeAllGiftsButton"
-                    onClick={e => props.seeGifts(e)}
+                    onClick={(e) => props.seeGifts(e)}
                   >
                     See all gifts added
+                  </button>
+
+                  <button
+                    className="btn btn-success"
+                    id="seeAllGiftsButton"
+                    onClick={(e) => props.seeGiftsBought(e)}
+                  >
+                    See all gifts bought
                   </button>
                 </a>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">

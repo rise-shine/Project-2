@@ -26,6 +26,7 @@ class App extends React.Component {
     this.seeGifts = this.seeGifts.bind(this);
     this.logOut = this.logOut.bind(this);
     this.addFriend = this.addFriend.bind(this);
+    this.seeGiftsBought = this.seeGiftsBought.bind(this);
 
     this.state = {
       cardInfo,
@@ -123,21 +124,27 @@ class App extends React.Component {
   };
 
   addGift = event => {
-    event.preventDefault();
-    const { itemName, completed,FriendId} = this.state;
 
-    axios.post("/api/gifts/create", { itemName, completed,FriendId}).then(response => {
-      console.log(response);
+    console.log(event);
+    // event.preventDefault();
+    // const { itemName, completed,FriendId} = this.state;
 
-      this.setState({
-        itemName: response.data.itemName,
-        completed: response.data.completed,
-        FriendId: response.data.FriendId
-      });
-      console.log(this.state);
-      localStorage.setItem("id", this.state.itemName);
-    });
+    // axios.post("/api/gifts/create", { itemName, completed,FriendId}).then(response => {
+    //   console.log(response);
+
+    //   this.setState({
+    //     itemName: response.data.itemName,
+    //     completed: response.data.completed,
+    //     FriendId: response.data.FriendId
+    //   });
+    //   console.log(this.state);
+    //   localStorage.setItem("id", this.state.itemName);
+    // });
   };
+
+  seeGiftsBought = event => {
+    console.log(event)
+  }
 
   seeGifts = event => {
     event.preventDefault();
@@ -178,7 +185,8 @@ class App extends React.Component {
       addGift,
       addFriend,
       logOut,
-      seeGifts
+      seeGifts,
+      seeGiftsBought
     } = this;
 
   
@@ -214,6 +222,7 @@ class App extends React.Component {
                 addFriend={addFriend}
                 seeGifts={seeGifts}
                 handleInputChange={handleInputChange}
+                seeGiftsBought={seeGiftsBought}
               />
             )} />
             <Route path="/gifts" component={giftList} />
