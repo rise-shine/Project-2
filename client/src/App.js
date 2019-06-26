@@ -22,7 +22,6 @@ class App extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleSignUp = this.handleSignUp.bind(this);
-    this.addGift = this.addGift.bind(this);
     this.seeGifts = this.seeGifts.bind(this);
     this.logOut = this.logOut.bind(this);
     this.addFriend = this.addFriend.bind(this);
@@ -41,7 +40,6 @@ class App extends React.Component {
       friendName: "",
       dateOfBirth: "",
       relationship: "",
-      friendID: 0,
       price: "",
       itemName: "",
       comments: ""
@@ -122,21 +120,17 @@ class App extends React.Component {
     });
   };
 
-  addGift = id => {
-    console.log(id);
-    this.setState({
-      friendID: id
-    });
-    
-  };
   saveGift = event => {
 
+    const friendID = event.target.id;
     const { itemName, comments, price } = this.state;
 
-    axios.post("/api/gift/create/" + this.state.friendID, { itemName, comments, price }).then(response => {
+    axios.post("/api/gift/create/" + friendID, { itemName, comments, price }).then(response => {
 
       this.setState({
-        friendID: 0
+        itemName: "",
+        comments: "",
+        price: ""
       });
 
     });
@@ -159,7 +153,6 @@ class App extends React.Component {
 
   addFriend = event => {
     const id = localStorage.getItem("id");
-
     const { name, friendDOB, friendRelationship } = this.state;
 
     axios
@@ -219,7 +212,6 @@ class App extends React.Component {
                   handleInputChange={handleInputChange}
                   handleSignUp={handleSignUp}
                   handleFormSubmit={handleFormSubmit}
-                  addGift={addGift}
                 />
               )}
             />
@@ -229,7 +221,6 @@ class App extends React.Component {
                 <Friends
                   {...props}
                   friendsList={this.state.friends}
-                  addGift={addGift}
                   addFriend={addFriend}
                   seeGifts={seeGifts}
                   handleInputChange={handleInputChange}
