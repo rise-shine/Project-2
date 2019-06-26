@@ -33,7 +33,7 @@ function FriendCard(props) {
               <button
                 className="btn btn-success"
                 id="addGiftButtonFC"
-                onClick={() => props.saveGift(props.id)}
+                onClick={() => props.addGift(props.id)}
               >
                 Add gift
               </button>
@@ -43,35 +43,34 @@ function FriendCard(props) {
               <form>
                 <input
                   className="form-control"
-                  value={props.giftName}
-                  name="giftName"
+                  value={props.itemName}
+                  name="itemName"
                   onChange={e => props.handleInputChange(e)}
                   type="text"
                   placeholder="Gift Name"
                 />
-
                 <input
                   className="form-control"
-                  value={props.holiday}
-                  name="holiday"
+                  value={props.comments}
+                  name="comments"
                   onChange={e => props.handleInputChange(e)}
                   type="text"
-                  placeholder="Date Needed 1990-01-01"
+                  placeholder="Comments"
                 />
-
                 <input
                   className="form-control"
-                  value={props.giftDesc}
-                  name="giftDesc"
+                  value={props.price}
+                  name="price"
                   onChange={e => props.handleInputChange(e)}
-                  type="text"
-                  placeholder="comments about the gift"
+                  type="number"
+                  placeholder="10.00"
                 />
                 <br />
                 <button
+                  id={props.id}
                   type="button"
                   className="btn btn-success"
-                  onClick={e => props.saveGift(props.id)}
+                  onClick={e => props.saveGift(e)}
                 >
                   submit
                 </button>
