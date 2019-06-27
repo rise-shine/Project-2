@@ -4,7 +4,9 @@ import "./FriendCard.css";
 function FriendCard(props) {
   const styles = {
     marginBottom: "10px",
-    width: "350px"
+    marginRight: "10px",
+    width: "350px",
+    display: "inline-block"
   };
 
   return (
