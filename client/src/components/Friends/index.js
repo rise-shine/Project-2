@@ -3,7 +3,10 @@ import FriendCard from "../FriendCard";
 import "./friends.css";
 
 function Friends(props) {
-  console.log(props.friendsList);
+ 
+  if (props.gifts.length > 0) {
+    props.history.push("/gifts");
+  }
 
   return (
     <div className="container">
@@ -114,6 +117,7 @@ function Friends(props) {
             </span>
           </div>
         )}
+        
       </div>
     </div>
   );
