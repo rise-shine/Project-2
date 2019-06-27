@@ -46,6 +46,7 @@
     color: orangered;
     padding: 10px;
     border-color: red;
+    box-shadow: 2px 2px;
 }
 
 .name{
