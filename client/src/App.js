@@ -4,14 +4,10 @@ import Wrapper from "./components/Wrapper";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import LoginForm from "./components/LoginForm/login";
-import cardInfo from "./components/Card/cardInfo.json";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import giftList from "./components/giftList";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import axios from "axios";
 import Friends from "./components/Friends";
-// import { createBrowserHistory } from "history";
-
-// const history = createBrowserHistory();
+import GiftsView from "./components/GiftsView";
 
 //Creating the App class
 class App extends React.Component {
@@ -29,7 +25,6 @@ class App extends React.Component {
     this.saveGift = this.saveGift.bind(this);
 
     this.state = {
-      cardInfo,
       friends: [],
       gifts: [],
       name: "",
@@ -84,7 +79,6 @@ class App extends React.Component {
     axios
       .get("/api/user/welcome/" + email + "/" + password)
       .then(response => {
-        console.log("axios", response);
         if (response.data.userID === "invalid") {
           console.log(
             alert(
@@ -120,13 +114,13 @@ class App extends React.Component {
   logOut = event => {
     event.preventDefault();
     this.setState({
-      cardInfo,
       friends: [],
+      gifts: [],
       name: "",
       email: "",
       password: "",
       userID: 0,
-      isLoggedIn: false
+      isLoggedIn: false,
     });
   };
 
@@ -150,13 +144,14 @@ class App extends React.Component {
   };
 
   seeGifts = id => {
+    
     axios.get("/api/gift/list/" + id).then(response => {
       this.setState({
-        gifts: [response.data]
+        gifts: response.data
       });
 
-      console.log(this.state.gifts);
     });
+  
   };
 
   addFriend = event => {
@@ -188,7 +183,6 @@ class App extends React.Component {
       handleInputChange,
       handleSignUp,
       handleFormSubmit,
-      addGift,
       addFriend,
       logOut,
       seeGifts,
@@ -226,21 +220,35 @@ class App extends React.Component {
             <Route
               path="/friends"
               render={props => (
-                <Friends
+                <Wrapper>
+                  <Friends
+                    {...props}
+                    friendsList={this.state.friends}
+                    addFriend={addFriend}
+                    seeGifts={seeGifts}
+                    handleInputChange={handleInputChange}
+                    seeGiftsBought={seeGiftsBought}
+                    itemName={this.state.itemName}
+                    price={this.state.price}
+                    comments={this.state.comments}
+                    gifts={this.state.gifts}
+                    saveGift={saveGift}
+                  />
+                </Wrapper>
+                
+              )}
+            />
+                
+            <Route
+              path="/gifts"
+              render={props => (
+                <GiftsView
                   {...props}
-                  friendsList={this.state.friends}
-                  addFriend={addFriend}
-                  seeGifts={seeGifts}
-                  handleInputChange={handleInputChange}
-                  seeGiftsBought={seeGiftsBought}
-                  itemName={this.state.itemName}
-                  price={this.state.price}
-                  comments={this.state.comments}
-                  saveGift={saveGift}
+                  gifts={this.state.gifts}
                 />
               )}
             />
-            <Route path="/gifts" component={giftList} />
+
           </Switch>
         </Router>
         <Footer />

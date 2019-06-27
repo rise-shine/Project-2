@@ -71,7 +71,7 @@ function FriendCard(props) {
                   className="btn btn-success"
                   onClick={e => props.saveGift(e)}
                 >
-                  submit
+                  Submit
                 </button>
               </form>
             </div>
@@ -80,34 +80,21 @@ function FriendCard(props) {
 
         <div className="see-gifts-dropdown">
           <h6 className="drop-gift">
-            <a
-              className="card-dropdown-toggle"
-              href="#"
-              id="cardDropdown"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
+            <button
+              className="btn btn-success"
+              id="seeAllGiftsButton"
+              onClick={() => props.seeGifts(props.id)}
             >
-              <button
-                className="btn btn-success"
-                id="seeAllGiftsButton"
-                onClick={() => props.seeGifts(props.id)}
-              >
-                See all gifts added
-              </button>
+                  See all gifts added 
+            </button>
 
-              <button
-                className="btn btn-success"
-                id="seeAllGiftsButton"
-                onClick={e => props.seeGiftsBought(e)}
-              >
+            <button
+              className="btn btn-success"
+              id="seeAllGiftsButton"
+              onClick={e => props.seeGiftsBought(e)}
+            >
                 See all gifts bought
-              </button>
-            </a>
-            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a className="dropdown-item" href="/action1" />
-            </div>
+            </button>
           </h6>
         </div>
       </div>
