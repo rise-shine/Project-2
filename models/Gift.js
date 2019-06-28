@@ -16,10 +16,6 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.BOOLEAN,
       allowNull: true,
       defaultValue: false
-    },
-    FriendId: {
-      type: DataTypes.INTEGER,
-      allowNull: false
     }
   });
 

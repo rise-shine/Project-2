@@ -27,6 +27,7 @@ class App extends React.Component {
     this.state = {
       friends: [],
       gifts: [],
+      userName: "",
       name: "",
       email: "",
       password: "",
@@ -51,13 +52,12 @@ class App extends React.Component {
 
   //Function that will handle registration
   handleSignUp = event => {
-    event.preventDefault();
+    
+    const { userName, email, password } = this.state;
 
-    const { name, email, password } = this.state;
-
-    axios.post("/api/user/create", { name, email, password }).then(response => {
+    axios.post("/api/user/create", { userName, email, password }).then(response => {
       this.setState({
-        name: response.data.name,
+        userName: response.data.name,
         email: response.data.email,
         userID: response.data.userID,
         isLoggedIn: true
@@ -72,42 +72,42 @@ class App extends React.Component {
   handleFormSubmit = event => {
     //need to add logic to check this data with database
 
-    event.preventDefault();
-
     const { email, password } = this.state;
 
     axios
-      .get("/api/user/welcome/" + email + "/" + password)
+      .post("/api/user/welcome/" + email + "/" + password)
       .then(response => {
-        if (response.data.userID === "invalid") {
-          console.log(
-            alert(
-              "This is not a valid userID.  If you do not have an account use the 'create a new account' below"
-            )
-          );
-          this.setState({
-            isLoggedIn: false
-          });
-        } else if (response.data.userID) {
-          this.setState({
-            userID: response.data.userID,
-            name: response.data.name,
-            isLoggedIn: true
-          });
 
-          localStorage.clear();
-          localStorage.setItem("id", this.state.userID);
+        console.log(response.data);
+
+        if (response.data === true) {
+          axios.get("/api/user/welcome/" + this.state.email).then(response => {
+
+            console.log(response)
+            this.setState({
+                  userID: response.data.userID,
+                  userName: response.data.name,
+                  isLoggedIn: true
+            })
+
+          } 
+            ).then(() => {
+
+              localStorage.clear();
+              localStorage.setItem("id", this.state.userID);
+
+              axios.get("api/friend/list/" + this.state.userID).then(response => {
+                this.setState({
+                  friends: response.data
+                });
+              });
+            });
         } else {
+
           alert("Your password is incorrect.");
+
         }
       })
-      .then(() => {
-        axios.get("api/friend/list/" + this.state.userID).then(response => {
-          this.setState({
-            friends: response.data
-          });
-        });
-      });
   };
 
   //Function that will handle sign out
@@ -116,6 +116,7 @@ class App extends React.Component {
     this.setState({
       friends: [],
       gifts: [],
+      userName: "",
       name: "",
       email: "",
       password: "",
@@ -194,7 +195,7 @@ class App extends React.Component {
       <Wrapper>
         <Router>
           <Navbar
-            userName={this.state.name}
+            userName={this.state.userName}
             isLoggedIn={this.state.isLoggedIn}
             logOut={logOut}
           />
@@ -207,7 +208,7 @@ class App extends React.Component {
                   {...props}
                   isLoggedIn={this.state.isLoggedIn}
                   registerEmail={this.state.email}
-                  registerName={this.state.name}
+                  registerName={this.state.userName}
                   registerPassword={this.state.password}
                   email={this.state.email}
                   password={this.state.password}

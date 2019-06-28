@@ -1,6 +1,14 @@
 const router = require("express").Router();
 var db = require("../../models");
 
+var cors = require("cors");
+var jwt = require("jsonwebtoken");
+var bcrypt = require("bcrypt");
+
+router.use(cors());
+process.env.SECRET_KEY = "secret";
+
+
 router.get("/", function(req, res) {
   console.log("Hi");
 });
@@ -16,8 +24,24 @@ router.get("/welcome", function(req, res) {
     });
 });
 
-// After the user signs in, the code will read the DB. Then, it will render the friends in the welcome page
-router.get("/welcome/:email/:password", function(req, res) {
+router.post('/welcome/:email/:password', function (req, res) {
+  db.User.findOne({
+    where: {
+      email: req.params.email
+    }
+  }).then(function (response) {
+    if (!response) {
+      res.send("You haven't registered an account yet. Click Create New Account to get started.");
+    } else {
+      bcrypt.compare(req.params.password, response.password, function (err, result) {
+        res.json(result);
+      });
+    }
+  });
+});
+
+router.get("/welcome/:email", function(req, res) {
+  
   db.User.findOne({
     where: {
       email: req.params.email
@@ -25,44 +49,8 @@ router.get("/welcome/:email/:password", function(req, res) {
   })
 
     .then(function(response) {
-      if (response == null) {
-        console.log("response value is null");
-        res.json({
-          userID: "invalid",
-          name: "invalid"
-        });
-      } else if (req.params.password === response.dataValues.password) {
-        console.log(
-          response.dataValues.id,
-          response.dataValues.name,
-          response.dataValues.email
-        );
-        res.json({
-          userID: response.dataValues.id,
-          name: response.dataValues.name
-        });
-      }
-    })
-    .catch(err => {
-      console.log(err);
-    });
-});
 
-// post route to create burgers
-router.post("/create", function(req, res) {
-  const { name, email, password } = req.body;
-
-  console.log(name, email, password);
-
-  // edited burger create to add in a burger_name
-  db.User.create({
-    name: name,
-    email: email,
-    password: password
-  })
-    // pass the result of our call
-    .then(function(response) {
-      console.log(response.dataValues.id, response.dataValues.name);
+      console.log(response);
       res.json({
         userID: response.dataValues.id,
         name: response.dataValues.name
@@ -70,47 +58,44 @@ router.post("/create", function(req, res) {
     })
     .catch(err => {
       console.log(err);
+      res.send("Error: " + err);
     });
 });
 
-// // put route to devour a burger
-// router.put("/friends/update", function(req, res) {
-//   // If we are given a customer, create the customer and give them this devoured burger
-//   if (req.body.friend) {
-//     db.Friend.create({
-//       friend: req.body.friend,
-//     })
-//       .then(function(dbFriend) {
-//         return db.Friend.update(
-//           {
-//             name: req.body.name
-//           },
-//           {
-//             where: {
-//               id: req.body.friend_id
-//             }
-//           }
-//         );
-//       })
-//       .then(function(dbFriend) {
-//         res.json("/");
-//       });
-//   }
-//   // If we aren't given a customer, just update the burger to be devoured
-//   else {
-//     db.Friend.update(
-//       {
-//         name: req.body.name
-//       },
-//       {
-//         where: {
-//           id: req.body.friend_id
-//         }
-//       }
-//     ).then(function(dbFriend) {
-//       res.json("/");
-//     });
-//   }
-// });
+router.post("/create", function(req, res) {
+  var { userName, email, password } = req.body;
+
+  console.log(userName, email, password);
+
+  var hash = bcrypt.hashSync(password, 10);
+  password = hash;
+
+  console.log(password);
+
+  // edited burger create to add in a burger_name
+  db.User.create({
+    name: userName,
+    email: email,
+    password: password
+  })
+    // pass the result of our call
+    .then(function(response) {
+
+      var token = jwt.sign(response.dataValues, process.env.SECRET_KEY, {
+        expiresIn: 1440 
+      });
+     
+      console.log(response.dataValues.id, response.dataValues.name);
+      res.json({
+        userID: response.dataValues.id,
+        name: response.dataValues.name,
+        token: token
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      res.send("Error: " + err);
+    });
+});
 
 module.exports = router;

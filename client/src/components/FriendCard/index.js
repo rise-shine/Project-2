@@ -68,9 +68,9 @@ function FriendCard(props) {
                 />
                 <br />
                 <button
-                  id="submitBtn"
+                  id={props.id}
                   type="button"
-                  className="btn btn-success"
+                  className="btn btn-success submitBtn"
                   onClick={e => props.saveGift(e)}
                 >
                   Submit

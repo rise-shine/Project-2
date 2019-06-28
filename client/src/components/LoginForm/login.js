@@ -2,7 +2,7 @@ import React from "react";
 import "./login.css";
 
 function LoginForm(props) {
-  console.log(props.isLoggedIn);
+  
   if (props.isLoggedIn) {
     props.history.push("/friends");
   }
@@ -38,7 +38,7 @@ function LoginForm(props) {
                 <input
                   className="form-control"
                   value={props.registerName}
-                  name="name"
+                  name="userName"
                   onChange={e => props.handleInputChange(e)}
                   type="text"
                   placeholder="Full Name"
