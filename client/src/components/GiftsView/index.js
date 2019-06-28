@@ -1,5 +1,6 @@
 import React from "react";
 import GiftsList from "../GiftsList";
+import "./giftsview.css";
 
 function GiftsView(props) {
 
@@ -7,11 +8,11 @@ function GiftsView(props) {
 
     <table className="table">
       <thead>
-        <tr>
-          <th scope="col">Gift Idea</th>
-          <th scope="col">Comments</th>
-          <th scope="col">Price</th>
-          <th scope="col">Have you bought it?</th>
+        <tr className="headings">
+          <th scope="col-2" id="idea">Gift Idea</th>
+          <th scope="col-2" id="comments">Comments</th>
+          <th scope="col-2" id="price">Price</th>
+          <th scope="col-2" id="bought">Have you bought it?</th>
         </tr>
       </thead>
          

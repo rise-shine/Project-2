@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css?family=Mali&display=swap');
+
+.headings{
+    background-color: rgb(243, 194, 103);
+    font-size: 15px;
+    margin-left: 50px;
+    font-family: 'Mali', cursive;
+    font-weight: bold;
+    color: red;
+    border-radius: 15px;
+}
+
+
+.table{
+    width: 60%;
+    margin: auto;
+    margin-top: 50px;
+   
+}
