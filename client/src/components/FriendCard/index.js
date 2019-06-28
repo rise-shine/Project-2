@@ -36,7 +36,7 @@ function FriendCard(props) {
                 className="btn btn-success"
                 id="addGiftButtonFC"
               >
-                Add gift
+                Add new gift idea
               </button>
             </a>
             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -87,19 +87,28 @@ function FriendCard(props) {
               id="seeAllGiftsButton"
               onClick={() => props.seeGifts(props.id)}
             >
-              See all of {props.name}'s gifts!
+
+                  View gift ideas for {props.name}
+
             </button>
           </h6>
         </div>
 
-        <div className="see-gifts-dropdown">
-          <h6 className="drop-gift">
-            <button
-              className="btn btn-danger"
-              id="Delete"
-              onClick={() => props.delete(props.id)}
+
+            {/* <button
+              className="btn btn-success"
+              id="seeAllGiftsButton"
+              onClick={e => props.seeGiftsBought(e)}
             >
-              Delete friend?
+                See all gifts bought
+            </button> */}
+            <br/>
+            <button
+            className="btn btn-danger"
+            id="deleteButton"
+            onClick={() => props.delete(props.id)}>
+              Delete this person?
+
             </button>
 
           </h6>
