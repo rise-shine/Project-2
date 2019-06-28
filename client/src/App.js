@@ -179,12 +179,17 @@ class App extends React.Component {
         });
       });
   };
+
   delete = id => {
-    axios.get("/delete-friend/" + id).then(response =>{
+    axios.get("/api/friend/delete/" + id).then(response =>{
       console.log(response)
     })
+    this.setState(prevState => {
+    return {
+      friends: [...prevState.friends,]
+    }
+    })
   }
-
 
   render() {
     const {
@@ -195,7 +200,7 @@ class App extends React.Component {
       logOut,
       seeGifts,
       seeGiftsBought,
-      saveGift
+      saveGift,
       
     } = this;
 

@@ -51,7 +51,16 @@ router.post("/create/:id", function(req, res) {
     });
 });
 router.get("/delete/:id", function(req, res){
-  res.send("delete worked" + req.params.id)
+  db.Friend.destroy({
+      where: {
+         id: req.params.id //this will be your id that you want to delete
+      }
+  }).then(()=>{
+      res.send("delete worked" + req.params.id)
+      // remove from state
+      // or 
+      // make a new request to update the state
+  })
 })
 
 
