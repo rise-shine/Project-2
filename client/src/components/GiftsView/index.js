@@ -36,10 +36,11 @@ function GiftsView(props) {
         />
       ))}
     
-
+<br/>
 <a href="/friends">  
 <button 
 className="btn btn-success"
+id="returnButton"
 >Return to friend list
 </button>
 </a>    

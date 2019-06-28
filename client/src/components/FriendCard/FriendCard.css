@@ -1,22 +1,23 @@
 @import url('https://fonts.googleapis.com/css?family=Mali&display=swap');
 
 #addGiftButtonFC{
-    width: 180px;
+    width: 260px;
     align-content: center;
-    background-color: orange;
-    border-color: orangered;
-    color: red;
+    background-color:rgb(6, 202, 65);
+    border-color:orangered;
+    color: rgb(117, 4, 4);
     font-family: 'Mali', cursive;
 }
   
 #addGiftButtonFC:hover {
     transform: scale(1.08); 
-    background-color: rgb(255, 217, 0);
+    background-color: rgb(187, 255, 0);
+    color: black;
     font-weight: bold;
 }
 
 #seeAllGiftsButton{
-    width: 180px;
+    width: 260px;
     align-content: center;
     background-color: orange;
     border-color: orangered;
@@ -27,8 +28,9 @@
   
 #seeAllGiftsButton:hover {
     transform: scale(1.08); 
-    background-color: rgb(255, 217, 0);
+    background-color:  yellow;
     font-weight: bold;
+    color: black;
 }
 
 .submitBtn{
@@ -49,4 +51,18 @@
 .dropdown-menu{
     background-color: rgb(252, 252, 178);
     border-color:orangered;
+}
+
+#deleteButton{
+    width: 260px;
+    font-family: 'Mali', cursive;
+    color: orange;
+}
+
+#deleteButton:hover{
+    transform: scale(1.08); 
+    background-color:orangered;
+    color:black;
+    font-weight: bold;
+    font-family: 'Mali', cursive;
 }
