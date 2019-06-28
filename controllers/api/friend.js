@@ -56,7 +56,7 @@ router.get("/delete/:id", function(req, res){
          id: req.params.id //this will be your id that you want to delete
       }
   }).then(()=>{
-      res.send("delete worked" + req.params.id)
+      res.send("id deleted: " + req.params.id)
       // remove from state
       // or 
       // make a new request to update the state

@@ -53,7 +53,7 @@ class App extends React.Component {
 
   //Function that will handle registration
   handleSignUp = event => {
-    
+
     const { userName, email, password } = this.state;
 
     axios.post("/api/user/create", { userName, email, password }).then(response => {
@@ -86,23 +86,23 @@ class App extends React.Component {
 
             console.log(response)
             this.setState({
-                  userID: response.data.userID,
-                  userName: response.data.name,
-                  isLoggedIn: true
+              userID: response.data.userID,
+              userName: response.data.name,
+              isLoggedIn: true
             })
 
-          } 
-            ).then(() => {
+          }
+          ).then(() => {
 
-              localStorage.clear();
-              localStorage.setItem("id", this.state.userID);
+            localStorage.clear();
+            localStorage.setItem("id", this.state.userID);
 
-              axios.get("api/friend/list/" + this.state.userID).then(response => {
-                this.setState({
-                  friends: response.data
-                });
+            axios.get("api/friend/list/" + this.state.userID).then(response => {
+              this.setState({
+                friends: response.data
               });
             });
+          });
         } else {
 
           alert("Your password is incorrect.");
@@ -146,14 +146,14 @@ class App extends React.Component {
   };
 
   seeGifts = id => {
-    
+
     axios.get("/api/gift/list/" + id).then(response => {
       this.setState({
         gifts: response.data
       });
 
     });
-  
+
   };
 
   addFriend = event => {
@@ -181,14 +181,12 @@ class App extends React.Component {
   };
 
   delete = id => {
-    axios.get("/api/friend/delete/" + id).then(response =>{
+    axios.get("/api/friend/delete/" + id).then(response => {
       console.log(response)
+      const friends = this.state.friends.filter(friend => friend.id !== id);
+    this.setState({ friends });
     })
-    this.setState(prevState => {
-    return {
-      friends: [...prevState.friends,]
-    }
-    })
+  
   }
 
   render() {
@@ -201,7 +199,8 @@ class App extends React.Component {
       seeGifts,
       seeGiftsBought,
       saveGift,
-      
+
+
     } = this;
 
     return (
@@ -250,10 +249,10 @@ class App extends React.Component {
                     delete={this.delete}
                   />
                 </Wrapper>
-                
+
               )}
             />
-                
+
             <Route
               path="/gifts"
               render={props => (
