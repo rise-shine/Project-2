@@ -7,7 +7,7 @@ If you've ever been through a similar situation, this app is for you! With GiftS
 
 Just create an account and start saving your ideas!
 
-The app is deployed at https://gift-scribe.herokuapp.com/.
+The app is deployed at https://giftscribe.herokuapp.com.
 
 
 <h3>Release 1.0 Minimum Viable Product (MVP)</h3>
@@ -23,7 +23,7 @@ The app is deployed at https://gift-scribe.herokuapp.com/.
 
 <h3>Using the GiftScribe App</h3>
 
-1. Go to https://gift-scribe.herokuapp.com/.
+1. Go to https://giftscribe.herokuapp.com.
 
 2. Click Create New Account and fill out the form.
 
