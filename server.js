@@ -19,7 +19,7 @@ app.use(routes);
 
 // Start the API server
 // ADD SEQUELIZE HERE TO CONNECT TO YOUR DB
-db.sequelize.sync().then(() => {
+db.sequelize.sync({ force: true }).then(() => {
   app.listen(PORT, () => {
     console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
   });

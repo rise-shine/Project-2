@@ -87,16 +87,24 @@ function FriendCard(props) {
               id="seeAllGiftsButton"
               onClick={() => props.seeGifts(props.id)}
             >
-                  See all gifts added 
+                  See all of {props.name}'s gifts! 
             </button>
 
-            <button
+            {/* <button
               className="btn btn-success"
               id="seeAllGiftsButton"
               onClick={e => props.seeGiftsBought(e)}
             >
                 See all gifts bought
+            </button> */}
+            
+            <button
+            className="btn btn-danger"
+            id="deleteButton"
+            onClick={e => props.delete(e)}>
+              Delete friend?
             </button>
+
           </h6>
         </div>
       </div>

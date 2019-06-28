@@ -28,10 +28,14 @@ function GiftsView(props) {
       ))}
     
 
-      
-
+<a href="/friends">  
+<button 
+className="btn btn-success"
+>Return to friend list
+</button>
+</a>    
     </table>
-  )
-    
+  
+  ) 
 }
 export default GiftsView;

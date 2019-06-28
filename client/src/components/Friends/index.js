@@ -58,7 +58,7 @@ function Friends(props) {
                   name="friendDOB"
                   onChange={e => props.handleInputChange(e)}
                   type="text"
-                  placeholder="1990-01-01"
+                  placeholder="01-01-1990"
                 />
                 <input
                   className="form-control"

@@ -15,6 +15,7 @@ function GiftsList(props) {
       </tr>
     </tbody>
   
+  
   )
 };
 
