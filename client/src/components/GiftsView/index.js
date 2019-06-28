@@ -35,7 +35,6 @@ function GiftsView(props) {
           
         />
       ))}
-<<<<<<< HEAD
     
 
 <a href="/friends">  
@@ -47,7 +46,6 @@ className="btn btn-success"
     </table>
   
   ) 
-=======
 
       {/* {props.gifts.map(gift =>
         gift.completed === true ? (
@@ -68,8 +66,6 @@ className="btn btn-success"
           />
         )
       )} */}
-    </table>
-  );
->>>>>>> b3d383c118e52abede9ace487379bbde9ed78251
+
 }
 export default GiftsView;
