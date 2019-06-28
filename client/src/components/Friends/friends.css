@@ -70,3 +70,8 @@
     border-radius: 15px;
   }
 
+  .form-control{
+    width: 300px;
+    background-color: rgb(243, 243, 104);
+  }
+
