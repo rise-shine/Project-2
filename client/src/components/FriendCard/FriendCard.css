@@ -31,13 +31,14 @@
     font-weight: bold;
 }
 
-#submitBtn{
+.submitBtn{
     background-color:orange;
     color: red;
     margin-left: 110px;
 }
 
-#submitBtn:hover {
+
+.submitBtn:hover {
     transform: scale(1.08); 
     background-color:orangered;
     color: rgb(255, 217, 0);

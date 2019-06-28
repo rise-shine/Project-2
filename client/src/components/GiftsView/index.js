@@ -22,7 +22,21 @@ function GiftsView(props) {
         </tr>
       </thead>
 
-      {props.gifts.map(gift =>
+      {props.gifts.map(gift => (
+                    
+        <GiftsList
+          key={gift.id}
+          itemName={gift.itemName}
+          comments={gift.comments}
+          price={gift.price}
+
+          completed={gift.completed ? <span>"Already Purchased"</span> : <span>"Not Purchased"</span>}
+              
+          
+        />
+      ))}
+
+      {/* {props.gifts.map(gift =>
         gift.completed === true ? (
           <GiftsList
             key={gift.id}
@@ -40,7 +54,7 @@ function GiftsView(props) {
             completed={"Not Purchased"}
           />
         )
-      )}
+      )} */}
     </table>
   );
 }
