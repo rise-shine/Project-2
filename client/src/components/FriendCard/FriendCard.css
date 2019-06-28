@@ -31,3 +31,22 @@
     font-weight: bold;
 }
 
+.submitBtn{
+    background-color:orange;
+    color: red;
+    margin-left: 110px;
+}
+
+
+.submitBtn:hover {
+    transform: scale(1.08); 
+    background-color:orangered;
+    color: rgb(255, 217, 0);
+    font-weight: bold;
+  
+}
+
+.dropdown-menu{
+    background-color: rgb(252, 252, 178);
+    border-color:orangered;
+}
