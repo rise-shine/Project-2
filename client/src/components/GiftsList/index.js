@@ -1,11 +1,12 @@
 import React from "react";
+import "./giftslist.css";
 
 function GiftsList(props) {
 
   return (
 
    
-    <tbody>
+    <tbody className="tbody">
       <tr>
         <td>{props.itemName}</td>
         <td>{props.comments}</td>
