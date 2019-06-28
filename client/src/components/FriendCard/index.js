@@ -64,11 +64,11 @@ function FriendCard(props) {
                   name="price"
                   onChange={e => props.handleInputChange(e)}
                   type="number"
-                  placeholder="10.00"
+                  placeholder="$0.00"
                 />
                 <br />
                 <button
-                  id={props.id}
+                  id="submitBtn"
                   type="button"
                   className="btn btn-success"
                   onClick={e => props.saveGift(e)}
