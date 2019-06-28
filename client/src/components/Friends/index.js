@@ -107,6 +107,7 @@ function Friends(props) {
               itemName={props.itemName}
               comments={props.comments}
               price={props.price}
+              delete={props.delete}
             />
           ))
         ) : (

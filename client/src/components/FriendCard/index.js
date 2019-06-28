@@ -101,7 +101,7 @@ function FriendCard(props) {
             <button
             className="btn btn-danger"
             id="deleteButton"
-            onClick={e => props.delete(e)}>
+            onClick={() => props.delete(props.id)}>
               Delete friend?
             </button>
 

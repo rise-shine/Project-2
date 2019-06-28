@@ -50,6 +50,9 @@ router.post("/create/:id", function(req, res) {
       console.log(err);
     });
 });
+router.get("/delete/:id", function(req, res){
+  res.send("delete worked" + req.params.id)
+})
 
 
 module.exports = router;

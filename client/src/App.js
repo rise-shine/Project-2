@@ -23,6 +23,7 @@ class App extends React.Component {
     this.addFriend = this.addFriend.bind(this);
     this.seeGiftsBought = this.seeGiftsBought.bind(this);
     this.saveGift = this.saveGift.bind(this);
+    this.delete = this.delete.bind(this);
 
     this.state = {
       friends: [],
@@ -178,6 +179,12 @@ class App extends React.Component {
         });
       });
   };
+  delete = id => {
+    axios.get("/delete-friend/" + id).then(response =>{
+      console.log(response)
+    })
+  }
+
 
   render() {
     const {
@@ -189,6 +196,7 @@ class App extends React.Component {
       seeGifts,
       seeGiftsBought,
       saveGift
+      
     } = this;
 
     return (
@@ -234,6 +242,7 @@ class App extends React.Component {
                     comments={this.state.comments}
                     gifts={this.state.gifts}
                     saveGift={saveGift}
+                    delete={this.delete}
                   />
                 </Wrapper>
                 
