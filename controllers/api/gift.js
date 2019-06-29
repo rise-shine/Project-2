@@ -18,7 +18,8 @@ router.get("/list/:id", function(req, res) {
   
   db.Gift.findAll({
     where: {
-      FriendId: req.params.id
+      FriendId: req.params.id,
+      completed: false
     },
     include: [db.Friend]
   })
@@ -52,6 +53,22 @@ router.post("/create/:id", function(req, res) {
      
     }).catch(err => {
       console.log("there was a problem", err);
+    });
+});
+
+router.get("/update/:id", function(req, res) {
+
+  db.Gift.update({
+    completed: true
+  },{
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(function(response) {
+      res.json(response);
+
+      console.log(response);
     });
 });
 
