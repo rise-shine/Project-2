@@ -53,20 +53,21 @@ class App extends React.Component {
 
   //Function that will handle registration
   handleSignUp = event => {
-
     const { userName, email, password } = this.state;
 
-    axios.post("/api/user/create", { userName, email, password }).then(response => {
-      this.setState({
-        userName: response.data.name,
-        email: response.data.email,
-        userID: response.data.userID,
-        isLoggedIn: true
-      });
+    axios
+      .post("/api/user/create", { userName, email, password })
+      .then(response => {
+        this.setState({
+          userName: response.data.name,
+          email: response.data.email,
+          userID: response.data.userID,
+          isLoggedIn: true
+        });
 
-      localStorage.clear();
-      localStorage.setItem("id", this.state.userID);
-    });
+        localStorage.clear();
+        localStorage.setItem("id", this.state.userID);
+      });
   };
 
   //Function that will handle sign in
@@ -75,25 +76,21 @@ class App extends React.Component {
 
     const { email, password } = this.state;
 
-    axios
-      .post("/api/user/welcome/" + email + "/" + password)
-      .then(response => {
+    axios.post("/api/user/welcome/" + email + "/" + password).then(response => {
+      console.log(response.data);
 
-        console.log(response.data);
-
-        if (response.data === true) {
-          axios.get("/api/user/welcome/" + this.state.email).then(response => {
-
-            console.log(response)
+      if (response.data === true) {
+        axios
+          .get("/api/user/welcome/" + this.state.email)
+          .then(response => {
+            console.log(response);
             this.setState({
               userID: response.data.userID,
               userName: response.data.name,
               isLoggedIn: true
-            })
-
-          }
-          ).then(() => {
-
+            });
+          })
+          .then(() => {
             localStorage.clear();
             localStorage.setItem("id", this.state.userID);
 
@@ -103,12 +100,10 @@ class App extends React.Component {
               });
             });
           });
-        } else {
-
-          alert("Your password is incorrect.");
-
-        }
-      })
+      } else {
+        alert("Your password is incorrect.");
+      }
+    });
   };
 
   //Function that will handle sign out
@@ -122,7 +117,7 @@ class App extends React.Component {
       email: "",
       password: "",
       userID: 0,
-      isLoggedIn: false,
+      isLoggedIn: false
     });
   };
 
@@ -146,14 +141,11 @@ class App extends React.Component {
   };
 
   seeGifts = id => {
-
     axios.get("/api/gift/list/" + id).then(response => {
       this.setState({
         gifts: response.data
       });
-
     });
-
   };
 
   addFriend = event => {
@@ -182,12 +174,11 @@ class App extends React.Component {
 
   delete = id => {
     axios.get("/api/friend/delete/" + id).then(response => {
-      console.log(response)
+      console.log(response);
       const friends = this.state.friends.filter(friend => friend.id !== id);
-    this.setState({ friends });
-    })
-  
-  }
+      this.setState({ friends });
+    });
+  };
 
   render() {
     const {
@@ -198,9 +189,7 @@ class App extends React.Component {
       logOut,
       seeGifts,
       seeGiftsBought,
-      saveGift,
-
-
+      saveGift
     } = this;
 
     return (
@@ -249,20 +238,15 @@ class App extends React.Component {
                     delete={this.delete}
                   />
                 </Wrapper>
-
               )}
             />
 
             <Route
               path="/gifts"
               render={props => (
-                <GiftsView
-                  {...props}
-                  gifts={this.state.gifts}
-                />
+                <GiftsView {...props} gifts={this.state.gifts} />
               )}
             />
-
           </Switch>
         </Router>
         <Footer />

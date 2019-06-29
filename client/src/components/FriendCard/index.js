@@ -32,10 +32,7 @@ function FriendCard(props) {
               aria-haspopup="true"
               aria-expanded="false"
             >
-              <button
-                className="btn btn-success"
-                id="addGiftButtonFC"
-              >
+              <button className="btn btn-success" id="addGiftButtonFC">
                 Add new gift idea
               </button>
             </a>
@@ -87,34 +84,28 @@ function FriendCard(props) {
               id="seeAllGiftsButton"
               onClick={() => props.seeGifts(props.id)}
             >
-
-                  View gifts for {props.name}
-
+              View gifts for {props.name}
             </button>
           </h6>
         </div>
 
-
-            {/* <button
+        {/* <button
               className="btn btn-success"
               id="seeAllGiftsButton"
               onClick={e => props.seeGiftsBought(e)}
             >
                 See all gifts bought
             </button> */}
-            
-            <button
-            className="btn btn-danger"
-            id="deleteButton"
-            onClick={() => props.delete(props.id)}>
-              Delete this person?
 
-            </button>
-
-          
-        </div>
+        <button
+          className="btn btn-danger"
+          id="deleteButton"
+          onClick={() => props.delete(props.id)}
+        >
+          Delete this person?
+        </button>
       </div>
-    
+    </div>
   );
 }
 

@@ -8,7 +8,6 @@ var bcrypt = require("bcrypt");
 router.use(cors());
 process.env.SECRET_KEY = "secret";
 
-
 router.get("/", function(req, res) {
   console.log("Hi");
 });
@@ -24,16 +23,21 @@ router.get("/welcome", function(req, res) {
     });
 });
 
-router.post('/welcome/:email/:password', function (req, res) {
+router.post("/welcome/:email/:password", function(req, res) {
   db.User.findOne({
     where: {
       email: req.params.email
     }
-  }).then(function (response) {
+  }).then(function(response) {
     if (!response) {
-      res.send("You haven't registered an account yet. Click Create New Account to get started.");
+      res.send(
+        "You haven't registered an account yet. Click Create New Account to get started."
+      );
     } else {
-      bcrypt.compare(req.params.password, response.password, function (err, result) {
+      bcrypt.compare(req.params.password, response.password, function(
+        err,
+        result
+      ) {
         res.json(result);
       });
     }
@@ -41,7 +45,6 @@ router.post('/welcome/:email/:password', function (req, res) {
 });
 
 router.get("/welcome/:email", function(req, res) {
-  
   db.User.findOne({
     where: {
       email: req.params.email
@@ -49,7 +52,6 @@ router.get("/welcome/:email", function(req, res) {
   })
 
     .then(function(response) {
-
       console.log(response);
       res.json({
         userID: response.dataValues.id,
@@ -80,11 +82,10 @@ router.post("/create", function(req, res) {
   })
     // pass the result of our call
     .then(function(response) {
-
       var token = jwt.sign(response.dataValues, process.env.SECRET_KEY, {
-        expiresIn: 1440 
+        expiresIn: 1440
       });
-     
+
       console.log(response.dataValues.id, response.dataValues.name);
       res.json({
         userID: response.dataValues.id,
