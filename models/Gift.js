@@ -1,3 +1,4 @@
+//Creating the Gifts table, with 4 columns: itemName, comments, price, completed (indicates whether the item has been purchased or not).
 module.exports = function(sequelize, DataTypes) {
   var Gift = sequelize.define("Gift", {
     itemName: {
@@ -19,6 +20,7 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
+  //Associating the Gifts table with Friends.
   Gift.associate = function(models) {
     models.Gift.belongsTo(models.Friend, {
       onDelete: "CASCADE",

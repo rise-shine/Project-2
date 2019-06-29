@@ -205,7 +205,6 @@ class App extends React.Component {
 
   delete = id => {
     axios.get("/api/friend/delete/" + id).then(response => {
-      console.log(response)
       const friends = this.state.friends.filter(friend => friend.id !== id);
       this.setState({ friends });
     })

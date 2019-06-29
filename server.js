@@ -6,25 +6,22 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 var db = require("./models");
 
-// Define middleware here
+// Defining middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false}));
 
-// Serve up static assets (usually on heroku)
+// Serving up static assets on Heroku
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
-// Add routes, both API and view
+
+// Adding routes
 app.use(routes);
 
-
-
-
-// Start the API server
-// ADD SEQUELIZE HERE TO CONNECT TO YOUR DB
+// Connecting to the DB and starting the server
 db.sequelize.sync().then(() => {
   app.listen(PORT, () => {
     console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
