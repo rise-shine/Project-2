@@ -7,7 +7,7 @@ function GiftsList(props) {
    
     <tbody>
       <tr>
-        <td>{props.itemName}</td>
+        <td>{props.giftcle}</td>
         <td>{props.comments}</td>
         <td>{props.price}</td>
         <td>{props.completed}</td>

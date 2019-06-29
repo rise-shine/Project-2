@@ -23,6 +23,7 @@ class App extends React.Component {
     this.addFriend = this.addFriend.bind(this);
     this.seeGiftsBought = this.seeGiftsBought.bind(this);
     this.saveGift = this.saveGift.bind(this);
+    this.addGift = this.addGift.bind(this);
 
     this.state = {
       friends: [],
@@ -37,6 +38,7 @@ class App extends React.Component {
       relationship: "",
       price: "",
       itemName: "",
+      gift: "",
       comments: ""
     };
   }
@@ -120,13 +122,14 @@ class App extends React.Component {
       email: "",
       password: "",
       userID: 0,
-      isLoggedIn: false,
+      isLoggedIn: false
     });
   };
 
   saveGift = event => {
     const friendID = event.target.id;
     const { itemName, comments, price } = this.state;
+    console.log("this is save gift");
 
     axios
       .post("/api/gift/create/" + friendID, { itemName, comments, price })
@@ -139,19 +142,44 @@ class App extends React.Component {
       });
   };
 
+  addGift = id => {
+    console.log(id);
+    let user = this.state.userID;
+    let friendID = this.setState({ friendID: id });
+    //event.preventDefault();
+    console.log("helloOOOO, gift");
+    const { gift, giftDesc, holiday } = this.state;
+    console.log(gift);
+    axios
+      .post("/api/gift/create/" + user, {
+        user,
+        gift,
+        giftDesc,
+        holiday,
+        friendID
+      })
+      .then(response => {
+        console.log("axios respnose", response);
+
+        this.setState({
+          userID: response.data.user,
+          giftName: response.data.giftName,
+          giftDesc: response.data.giftDesc,
+          holiday: response.data.holiday,
+          friendID: response.data.friendID
+        });
+      });
+  };
   seeGiftsBought = event => {
     console.log(event);
   };
 
   seeGifts = id => {
-    
     axios.get("/api/gift/list/" + id).then(response => {
       this.setState({
         gifts: response.data
       });
-
     });
-  
   };
 
   addFriend = event => {
@@ -229,26 +257,22 @@ class App extends React.Component {
                     handleInputChange={handleInputChange}
                     seeGiftsBought={seeGiftsBought}
                     itemName={this.state.itemName}
+                    addGift={this.addGift}
                     price={this.state.price}
                     comments={this.state.comments}
                     gifts={this.state.gifts}
                     saveGift={saveGift}
                   />
                 </Wrapper>
-                
-              )}
-            />
-                
-            <Route
-              path="/gifts"
-              render={props => (
-                <GiftsView
-                  {...props}
-                  gifts={this.state.gifts}
-                />
               )}
             />
 
+            <Route
+              path="/gifts"
+              render={props => (
+                <GiftsView {...props} gifts={this.state.gifts} />
+              )}
+            />
           </Switch>
         </Router>
         <Footer />
