@@ -24,10 +24,12 @@ class App extends React.Component {
     this.seeGiftsBought = this.seeGiftsBought.bind(this);
     this.saveGift = this.saveGift.bind(this);
     this.delete = this.delete.bind(this);
+    this.updateGift = this.updateGift.bind(this);
 
     this.state = {
       friends: [],
       gifts: [],
+      giftsBought: [],
       userName: "",
       name: "",
       email: "",
@@ -113,7 +115,7 @@ class App extends React.Component {
 
   //Function that will handle sign out
   logOut = event => {
-    event.preventDefault();
+    
     this.setState({
       friends: [],
       gifts: [],
@@ -153,8 +155,20 @@ class App extends React.Component {
       });
 
     });
-
   };
+
+  updateGift = event => {
+
+    const giftID = event.target.id;
+
+    axios.get("/api/gift/update/" + giftID).then(response => {
+
+      const gifts = this.state.gifts.filter(gift => gift.id !== parseInt(giftID));
+      this.setState({ gifts });
+
+    });
+
+  }
 
   addFriend = event => {
     const id = localStorage.getItem("id");
@@ -184,7 +198,7 @@ class App extends React.Component {
     axios.get("/api/friend/delete/" + id).then(response => {
       console.log(response)
       const friends = this.state.friends.filter(friend => friend.id !== id);
-    this.setState({ friends });
+      this.setState({ friends });
     })
   
   }
@@ -199,8 +213,7 @@ class App extends React.Component {
       seeGifts,
       seeGiftsBought,
       saveGift,
-
-
+      updateGift
     } = this;
 
     return (
@@ -259,6 +272,7 @@ class App extends React.Component {
                 <GiftsView
                   {...props}
                   gifts={this.state.gifts}
+                  updateGift={updateGift}
                 />
               )}
             />
