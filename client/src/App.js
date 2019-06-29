@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import axios from "axios";
 import Friends from "./components/Friends";
 import GiftsView from "./components/GiftsView";
+import PurchasedView from "./components/PurchasedView";
 
 //Creating the App class
 class App extends React.Component {
@@ -143,15 +144,23 @@ class App extends React.Component {
       });
   };
 
-  seeGiftsBought = event => {
-    console.log(event);
+  seeGiftsBought = id => {
+
+    axios.get("/api/gift/purchased/" + id).then(response => {
+      this.setState({
+        giftsBought: response.data,
+        gifts: []
+      });
+
+    });
   };
 
   seeGifts = id => {
 
     axios.get("/api/gift/list/" + id).then(response => {
       this.setState({
-        gifts: response.data
+        gifts: response.data,
+        giftsBought: []
       });
 
     });
@@ -258,6 +267,7 @@ class App extends React.Component {
                     price={this.state.price}
                     comments={this.state.comments}
                     gifts={this.state.gifts}
+                    giftsBought={this.state.giftsBought}
                     saveGift={saveGift}
                     delete={this.delete}
                   />
@@ -273,6 +283,16 @@ class App extends React.Component {
                   {...props}
                   gifts={this.state.gifts}
                   updateGift={updateGift}
+                />
+              )}
+            />
+
+            <Route
+              path="/purchased"
+              render={props => (
+                <PurchasedView
+                  {...props}
+                  giftsBought={this.state.giftsBought}
                 />
               )}
             />

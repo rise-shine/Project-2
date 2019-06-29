@@ -1,7 +1,7 @@
 import React from "react";
-import "./giftslist.css";
+import "./purchasedlist.css";
 
-function GiftsList(props) {
+function PurchasedList(props) {
 
   return (
 
@@ -11,7 +11,6 @@ function GiftsList(props) {
         <td>{props.itemName}</td>
         <td>{props.comments}</td>
         <td>{props.price}</td>
-        <td><button id={props.id} className="markCompleted" onClick={e => props.updateGift(e)}>&#10004;</button></td>
       </tr>
     </tbody>
   
@@ -19,4 +18,4 @@ function GiftsList(props) {
   )
 };
 
-export default GiftsList;
+export default PurchasedList;
