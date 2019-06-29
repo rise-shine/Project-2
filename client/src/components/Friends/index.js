@@ -6,6 +6,8 @@ function Friends(props) {
  
   if (props.gifts.length > 0) {
     props.history.push("/gifts");
+  } else if (props.giftsBought.length > 0) {
+    props.history.push("/purchased");
   }
 
   return (

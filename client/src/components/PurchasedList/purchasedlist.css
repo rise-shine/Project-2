@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css?family=Mali&display=swap');
+
+.tbody{
+    background-color: rgb(243, 243, 101);
+    font-family: 'Mali', cursive;
+    color: orangered;
+}
+
+.markCompleted{
+    width: 50px;
+    align-content: center;
+    background-color:rgb(6, 202, 65);
+    border-color:orangered;
+    color: rgb(117, 4, 4);
+    font-family: 'Mali', cursive;
+}
+
+.markCompleted:hover{
+    transform: scale(1.08); 
+    background-color: greenyellow;
+    color: black;
+    font-weight: bold;
+}

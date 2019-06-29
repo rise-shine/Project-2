@@ -32,6 +32,26 @@ router.get("/list/:id", function(req, res) {
     });
 });
 
+router.get("/purchased/:id", function(req, res) {
+  
+  db.Gift.findAll({
+    where: {
+      FriendId: req.params.id,
+      completed: true
+    },
+    include: [db.Friend]
+  })
+    
+    .then(function(response) { 
+    res.json(response);
+
+    console.log(response)
+    }).catch(err => {
+      console.log(err);
+      
+    });
+});
+
 // post route to create gifts
 
 router.post("/create/:id", function(req, res) {
